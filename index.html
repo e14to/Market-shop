@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="content active" id="home">
+        <p id="p1">this is the home page if you want to understand more click menu page </p>
+    </div>
+
+    <div class="content" id="shop">
+        <div class="shop-grid">
+            <div class="product-card">
+                <img src="tomato-isolated-on-white-realistic-illustration-of-big-ripe-red-fresh-tomato-isolated-on-white-background-free-vector.webp" alt="Tomato" class="product-img">
+                <p class="product-caption">Tomato</p>
+                <p class="product-price">$2.50</p>
+                <button class="add-but" data-name="Tomato" data-price="2.50"></button>
+            </div>
+            <div class="product-card">
+                <img src="carrot.webp" alt="Carrot" class="product-img">
+                <p class="product-caption">Carrot</p>
+                <p class="product-price">$1.20</p>
+                <button class="add-but" data-name="carrot" data-price="1.20"></button>
+            </div>
+            <div class="product-card">
+                <img src="cucumber.webp" alt="Cucumber" class="product-img">
+                <p class="product-caption">Cucumber</p>
+                <p class="product-price">$1.80</p>
+                <button class="add-but" data-name="cucumber" data-price="1.80"></button>
+            </div>
+            <div class="product-card">
+                <img src="pepper.webp" alt="Pepper" class="product-img">
+                <p class="product-caption">Pepper</p>
+                <p class="product-price">$2.00</p>
+                <button class="add-but" data-name="pepper" data-price="2.00"></button>
+            </div>
+            <div class="product-card">
+                <img src="onion.webp" alt="Onion" class="product-img">
+                <p class="product-caption">Onion</p>
+                <p class="product-price">$1.50</p>
+                <button class="add-but" data-name="onion" data-price="1.50"></button>
+            </div>
+            <div class="product-card">
+                <img src="broccoli.webp" alt="Broccoli" class="product-img">
+                <p class="product-caption">Broccoli</p>
+                <p class="product-price">$2.30</p>
+                <button class="add-but" data-name="broccoli" data-price="2.30"></button>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="content" id="buy">
+        <div class="buy-container">
+            <h2>Basket</h2>
+            <ul id="basketList"></ul>
+            <h3 id="totalPrice">Total $0</h3>
+            <button id="openPayment">pay now</button>
+        </div>
+    </div>
+
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <span class="close-but">&times;</span>
+            <h2>Payment</h2>
+
+            <input type="text" placeholder="Card Number">
+            <input type="text" placeholder="Card Holder Name">
+            <input type="text" placeholder="MM/YY">
+            <input type="text" placeholder="CVV">
+
+            <button class="pay-but">Pay</button>
+        </div>
+        
+    </div>
+
+    <div class="nav-bar">
+        <button class="nav-but active" data-target="home">home</button>
+        <button class="nav-but" data-target="shop">shop</button>
+        <button class="nav-but" data-target="buy">buy</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
