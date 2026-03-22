@@ -157,3 +157,55 @@
     border-radius: 6px;
     cursor: pointer;
 }
+
+/*Mobile styles */
+@media (max-width: 600px) {
+
+    /* fix home text */
+    #p1 {
+        margin-top: 50px;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    /* grid becomes smaller */
+    .shop-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+        gap: 10px;
+    }
+
+    /* images smaller */
+    .product-img {
+        width: 100px;
+    }
+
+    /* text smaller */ 
+    .product-caption {
+        font-size: 14px;
+    }
+
+    .product-price {
+        font-size: 14px;
+    }
+
+    /*buttons fit screen */
+    .add-but {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    /* nav bar smaller */
+    .nav-but {
+        font-size: 18px;
+    }
+
+    /* modal width */
+    .modal-content {
+        width: 90%;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
