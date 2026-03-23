@@ -62,19 +62,44 @@
     letter-spacing: 0.5px;
 }
 
-.shop-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
+#shop {
     padding: 20px;
+}
+
+.shop-grid {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+    gap: 15px;
+}
+
+.shop-grid::-webkit-scrollbar {
+    display: none;
 }
 
 .product-card {
     text-align: center;
+    min-width: 140px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    text-align: center;
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
 }
 
 .product-img {
-    width: 150px;
+    width: 100%;
+    max-width: 120px;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -87,10 +112,14 @@
 
 .product-caption {
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
     color: #333;
     font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.product-price {
+    font-size: 14px;
 }
 
 #openPayment {
@@ -156,6 +185,8 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    width: 100%;
+    font-size: 13px;
 }
 
 /*Mobile styles */
