@@ -12,38 +12,49 @@
     </div>
 
     <div class="content" id="shop">
+
+        <div class="filter-buttons">
+            <button onclick="filterProducts('all')">All</button>
+            <button onclick="filterProducts('vegetables')">Vegetables</button>
+            <button onclick="filterProducts('meat')">Meat</button>
+            <button onclick="filterProducts('fruits')">Fruit</button>
+            <button onclick="filterProducts('drink')">Drink</button>
+        </div>
+
+        <input type="text" placeholder="Search product" class="search-box">
+
         <div class="shop-grid">
-            <div class="product-card">
+            <div class="product-card" data-category="vegetables">
                 <img src="tomato.webp" alt="Tomato" class="product-img">
                 <p class="product-caption">Tomato</p>
                 <p class="product-price">$2.50</p>
                 <button class="add-but" data-name="Tomato" data-price="2.50">add basket</button>
             </div>
-            <div class="product-card">
+            <div class="product-card" data-category="vegetables">
                 <img src="carrot.webp" alt="Carrot" class="product-img">
                 <p class="product-caption">Carrot</p>
                 <p class="product-price">$1.20</p>
                 <button class="add-but" data-name="carrot" data-price="1.20">add basket</button>
             </div>
-            <div class="product-card">
+            <div class="product-card" data-category="fruits">
                 <img src="cucumber.webp" alt="Cucumber" class="product-img">
                 <p class="product-caption">Cucumber</p>
                 <p class="product-price">$1.80</p>
                 <button class="add-but" data-name="cucumber" data-price="1.80">add basket</button>
             </div>
-            <div class="product-card">
+            <div class="product-card" data-category="vegetables">
                 <img src="pepper.webp" alt="Pepper" class="product-img">
                 <p class="product-caption">Pepper</p>
                 <p class="product-price">$2.00</p>
                 <button class="add-but" data-name="pepper" data-price="2.00">add basket</button>
             </div>
-            <div class="product-card">
+            <div class="product-card" data-category="vegetables">
                 <img src="onion.webp" alt="Onion" class="product-img">
                 <p class="product-caption">Onion</p>
                 <p class="product-price">$1.50</p>
                 <button class="add-but" data-name="onion" data-price="1.50">add basket</button>
             </div>
-            <div class="product-card">
+            <div class="product-card" data-category="vegetables">
                 <img src="broccoli.webp" alt="Broccoli" class="product-img">
                 <p class="product-caption">Broccoli</p>
                 <p class="product-price">$2.30</p>

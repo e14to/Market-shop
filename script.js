@@ -72,3 +72,39 @@ function updateBasket() {
     totalPrice.textContent = `Total: $${total.toFixed(2)}`;
 }
 
+function filterProducts(category){
+    const products = document.querySelectorAll('.product-card');
+
+    products.forEach(product => {
+
+        const productCategory = product.dataset.category;
+
+
+        if(category === 'all' || productCategory === category){
+            product.style.display = 'block';
+        }
+        else if(product.dataset.category === category){
+            product.style.display = 'block';
+        }  
+        else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+const searchInput = document.querySelector('.search-box');
+
+searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const product = document.querySelectorAll('.product-card');
+
+    product.forEach(product => {
+        const name = product.querySelector('.product-caption').textContent.toLowerCase();
+
+        if (name.includes(searchTerm)) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none'
+        }
+    });
+});
