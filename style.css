@@ -317,9 +317,10 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     color: white;
-    border-radius: 15px;
-    margin: 10px;
+    margin: 0px;
+    padding: 0;
 }
 
 .hero h1 {
