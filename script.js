@@ -63,13 +63,13 @@ function updateBasket() {
 
     basket.forEach(item => {
         const li = document.createElement("li");
-        li.textContent = `${item.name} - $${item.price}`;
+        li.textContent = `${item.name} - ${item.price}₾`;
         basketList.appendChild(li);
         
         total += item.price;
     });
 
-    totalPrice.textContent = `Total: $${total.toFixed(2)}`;
+    totalPrice.textContent = `Total: ${total.toFixed(2)}₾`;
 }
 
 function filterProducts(category){
@@ -107,4 +107,18 @@ searchInput.addEventListener('input', (e) => {
             product.style.display = 'none'
         }
     });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const homeBtn = document.getElementById('homeShopBtn');
+
+    if(homeBtn) {
+        homeBtn.addEventListener('click', () => {
+            const shopNavButton = document.querySelector('.nav-but[data-target="shop"]');
+            if (shopNavButton) {
+                shopNavButton.click();
+            }
+        });
+    }
 });
