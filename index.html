@@ -76,16 +76,25 @@
                 <p class="product-price">1.60₾</p>
                 <button class="add-but" data-name="coca-cola" data-price="1.60">add basket</button>
             </div>
+            <div class="product-card" data-category="fruit">
+                <img src="apple.webp" alt="Apple" class="product-img">
+                <p class="product-caption">Apple</p>
+                <p class="product-price">1.50₾</p>
+                <button class="add-but" data-name="apple" data-price="1.50">add basket</button>
+            </div>
         </div>
         
     </div>
 
     <div class="content" id="buy">
         <div class="buy-container">
-            <h2>Basket</h2>
-            <ul id="basketList"></ul>
-            <h3 id="totalPrice">Total ₾0</h3>
-            <button id="openPayment">pay now</button>
+            <h2>Your Basket</h2>
+            <div id="basketList" class="basket-grid">
+                </div>
+            <div class="basket-summary">
+                <h3 id="totalPrice">Total: ₾0.00</h3>
+                <button id="openPayment" class="pay-now-but">Proceed to Payment</button>
+            </div>
         </div>
     </div>
 

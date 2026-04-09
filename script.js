@@ -122,3 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+basketList.innerHTML += `
+    <div class="basket-item">
+        <span>${itemName}</span>
+        <strong>₾${itemPrice}</strong>
+    </div>
+`;
