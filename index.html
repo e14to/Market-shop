@@ -2,121 +2,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market shop</title>
+    <title>Market Shop</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- HOME PAGE -->
     <div class="content active" id="home">
         <div class="hero">
-            <h1>Welcome to Market Shop</h1>
-            <p>Get the freshest vegetables and fruit delivered to your door.</p>
-            <button id="homeShopBtn" class="home-now-but">Shop now</button>
+            <h1>Market<br><span>Shop</span></h1>
+            <p>Fresh vegetables, fruits & more — delivered to your door.</p>
+            <button id="homeShopBtn" class="home-now-but">Shop Now →</button>
         </div>
     </div>
 
+    <!-- SHOP PAGE -->
     <div class="content" id="shop">
 
-        <div class="filter-buttons">
-            <button onclick="filterProducts('all')">All</button>
-            <button onclick="filterProducts('vegetables')">Vegetables</button>
-            <button onclick="filterProducts('meat')">Meat</button>
-            <button onclick="filterProducts('fruits')">Fruit</button>
-            <button onclick="filterProducts('drink')">Drink</button>
+        <div id="cartWidget" class="cart-widget" onclick="navigateTo('buy')">
+            <span class="cart-icon">🛒</span>
+            <span id="widgetCount" class="cart-count hidden"></span>
         </div>
 
-        <input type="text" placeholder="Search product" class="search-box">
+        <div class="shop-header">
+            <h2 class="shop-title">Our Products</h2>
+            <input type="text" id="searchBox" placeholder="🔍 Search products..." class="search-box">
+        </div>
 
-        <div class="shop-grid">
-            <div class="product-card" data-category="vegetables">
-                <img src="tomato.webp" alt="Tomato" class="product-img">
+        <div class="filter-buttons" id="filterButtons">
+            <button class="active" onclick="filterProducts('all', this)">All</button>
+            <button onclick="filterProducts('vegetables', this)">🥦 Vegetables</button>
+            <button onclick="filterProducts('meat', this)">🥩 Meat</button>
+            <button onclick="filterProducts('fruits', this)">🍎 Fruits</button>
+            <button onclick="filterProducts('drink', this)">🥤 Drinks</button>
+        </div>
+
+        <div class="shop-grid" id="shopGrid">
+
+            <div class="product-card" data-category="vegetables" data-name="Tomato" data-price="6.50" data-stock="15">
+                <div class="stock-badge">15 left</div>
+                <img src="tomato.webp" alt="Tomato" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🍅'">
                 <p class="product-caption">Tomato</p>
+                <div class="rating">★★★★☆ <span>(42)</span></div>
                 <p class="product-price">6.50₾</p>
-                <button class="add-but" data-name="Tomato" data-price="6.50">add basket</button>
+                <button class="add-but" onclick="addToBasket('Tomato', 6.50, this)">+ Add to Basket</button>
             </div>
-            <div class="product-card" data-category="vegetables">
-                <img src="carrot.webp" alt="Carrot" class="product-img">
+
+            <div class="product-card" data-category="vegetables" data-name="Carrot" data-price="1.80" data-stock="30">
+                <div class="stock-badge">30 left</div>
+                <img src="carrot.webp" alt="Carrot" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🥕'">
                 <p class="product-caption">Carrot</p>
+                <div class="rating">★★★★★ <span>(88)</span></div>
                 <p class="product-price">1.80₾</p>
-                <button class="add-but" data-name="carrot" data-price="1.80">add basket</button>
+                <button class="add-but" onclick="addToBasket('Carrot', 1.80, this)">+ Add to Basket</button>
             </div>
-            <div class="product-card" data-category="vegetables">
-                <img src="cucumber.webp" alt="Cucumber" class="product-img">
+
+            <div class="product-card" data-category="vegetables" data-name="Cucumber" data-price="4.50" data-stock="20">
+                <div class="stock-badge">20 left</div>
+                <img src="cucumber.webp" alt="Cucumber" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🥒'">
                 <p class="product-caption">Cucumber</p>
+                <div class="rating">★★★★☆ <span>(35)</span></div>
                 <p class="product-price">4.50₾</p>
-                <button class="add-but" data-name="cucumber" data-price="4.50">add basket</button>
+                <button class="add-but" onclick="addToBasket('Cucumber', 4.50, this)">+ Add to Basket</button>
             </div>
-            <div class="product-card" data-category="vegetables">
-                <img src="pepper.webp" alt="Pepper" class="product-img">
+
+            <div class="product-card" data-category="vegetables" data-name="Pepper" data-price="10.00" data-stock="10">
+                <div class="stock-badge">10 left</div>
+                <img src="pepper.webp" alt="Pepper" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🌶️'">
                 <p class="product-caption">Pepper</p>
+                <div class="rating">★★★★☆ <span>(21)</span></div>
                 <p class="product-price">10.00₾</p>
-                <button class="add-but" data-name="pepper" data-price="10.00">add basket</button>
+                <button class="add-but" onclick="addToBasket('Pepper', 10.00, this)">+ Add to Basket</button>
             </div>
-            <div class="product-card" data-category="vegetables">
-                <img src="onion.webp" alt="Onion" class="product-img">
+
+            <div class="product-card" data-category="vegetables" data-name="Onion" data-price="1.50" data-stock="50">
+                <img src="onion.webp" alt="Onion" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🧅'">
                 <p class="product-caption">Onion</p>
+                <div class="rating">★★★☆☆ <span>(17)</span></div>
                 <p class="product-price">1.50₾</p>
-                <button class="add-but" data-name="onion" data-price="1.50">add basket</button>
+                <button class="add-but" onclick="addToBasket('Onion', 1.50, this)">+ Add to Basket</button>
             </div>
-            <div class="product-card" data-category="vegetables">
-                <img src="broccoli.webp" alt="Broccoli" class="product-img">
+
+            <div class="product-card" data-category="vegetables" data-name="Broccoli" data-price="8.00" data-stock="12">
+                <div class="stock-badge">12 left</div>
+                <img src="broccoli.webp" alt="Broccoli" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🥦'">
                 <p class="product-caption">Broccoli</p>
+                <div class="rating">★★★★★ <span>(60)</span></div>
                 <p class="product-price">8.00₾</p>
-                <button class="add-but" data-name="broccoli" data-price="8.00">add basket</button>
+                <button class="add-but" onclick="addToBasket('Broccoli', 8.00, this)">+ Add to Basket</button>
             </div>
-            <div class="product-card" data-category="fruits">
-                <img src="banana.webp" alt="Banana" class="product-img">
+
+            <div class="product-card sale" data-category="fruits" data-name="Banana" data-price="4.50" data-stock="25">
+                <div class="sale-badge">SALE</div>
+                <img src="banana.webp" alt="Banana" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🍌'">
                 <p class="product-caption">Banana</p>
-                <p class="product-price">4.50₾</p>
-                <button class="add-but" data-name="banana" data-price="4.50">add basket</button>
+                <div class="rating">★★★★☆ <span>(54)</span></div>
+                <p class="product-price">4.50₾ <s class="old-price">5.50₾</s></p>
+                <button class="add-but" onclick="addToBasket('Banana', 4.50, this)">+ Add to Basket</button>
             </div>
-            <div class="product-card" data-category="drink">
-                <img src="coca-cola.webp" alt="Coca-cola" class="product-img">
-                <p class="product-caption">Coca-cola</p>
+
+            <div class="product-card" data-category="drink" data-name="Coca-Cola" data-price="1.60" data-stock="100">
+                <img src="coca-cola.webp" alt="Coca-Cola" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🥤'">
+                <p class="product-caption">Coca-Cola</p>
+                <div class="rating">★★★★★ <span>(200)</span></div>
                 <p class="product-price">1.60₾</p>
-                <button class="add-but" data-name="coca-cola" data-price="1.60">add basket</button>
+                <button class="add-but" onclick="addToBasket('Coca-Cola', 1.60, this)">+ Add to Basket</button>
             </div>
-            <div class="product-card" data-category="fruits">
-                <img src="apple.webp" alt="Apple" class="product-img">
+
+            <div class="product-card sale" data-category="fruits" data-name="Apple" data-price="1.50" data-stock="40">
+                <div class="sale-badge">SALE</div>
+                <img src="apple.webp" alt="Apple" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🍎'">
                 <p class="product-caption">Apple</p>
-                <p class="product-price">1.50₾</p>
-                <button class="add-but" data-name="apple" data-price="1.50">add basket</button>
+                <div class="rating">★★★★★ <span>(130)</span></div>
+                <p class="product-price">1.50₾ <s class="old-price">2.00₾</s></p>
+                <button class="add-but" onclick="addToBasket('Apple', 1.50, this)">+ Add to Basket</button>
             </div>
+
+            <div class="product-card" data-category="meat" data-name="Chicken Breast" data-price="18.00" data-stock="8">
+                <div class="stock-badge">8 left</div>
+                <img src="chicken.webp" alt="Chicken" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🍗'">
+                <p class="product-caption">Chicken Breast</p>
+                <div class="rating">★★★★☆ <span>(77)</span></div>
+                <p class="product-price">18.00₾</p>
+                <button class="add-but" onclick="addToBasket('Chicken Breast', 18.00, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="meat" data-name="Beef Steak" data-price="35.00" data-stock="5">
+                <div class="stock-badge">5 left</div>
+                <img src="beef.webp" alt="Beef" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🥩'">
+                <p class="product-caption">Beef Steak</p>
+                <div class="rating">★★★★★ <span>(44)</span></div>
+                <p class="product-price">35.00₾</p>
+                <button class="add-but" onclick="addToBasket('Beef Steak', 35.00, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="drink" data-name="Orange Juice" data-price="5.00" data-stock="30">
+                <img src="juice.jpg" alt="Orange Juice" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🍊'">
+                <p class="product-caption">Orange Juice</p>
+                <div class="rating">★★★★☆ <span>(90)</span></div>
+                <p class="product-price">5.00₾</p>
+                <button class="add-but" onclick="addToBasket('Orange Juice', 5.00, this)">+ Add to Basket</button>
+            </div>
+
         </div>
-        
+
+        <div id="noResults" class="no-results hidden">
+            <p>😕 No products found.</p>
+        </div>
+
     </div>
 
+    <!-- BASKET PAGE -->
     <div class="content" id="buy">
         <div class="buy-container">
-            <h2>Your Basket</h2>
-            <div id="basketList" class="basket-grid">
+            <h2>🛒 Your Basket</h2>
+            <div id="basketList" class="basket-grid"></div>
+            <div id="emptyBasket" class="empty-basket">
+                <p>🛍️ Your basket is empty!</p>
+                <button onclick="navigateTo('shop')" class="go-shop-but">Browse Products</button>
+            </div>
+            <div class="basket-summary" id="basketSummary" style="display:none">
+                <div class="summary-row">
+                    <span>Subtotal</span><span id="subtotalPrice">₾0.00</span>
                 </div>
-            <div class="basket-summary">
-                <h3 id="totalPrice">Total: ₾0.00</h3>
-                <button id="openPayment" class="pay-now-but">Proceed to Payment</button>
+                <div class="summary-row">
+                    <span>Delivery</span><span class="delivery-free">FREE</span>
+                </div>
+                <div class="summary-row total-row">
+                    <span>Total</span><span id="totalPrice">₾0.00</span>
+                </div>
+                <button class="clear-but" onclick="clearBasket()">🗑 Clear Basket</button>
+                <button id="openPayment" class="pay-now-but">Proceed to Payment →</button>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="paymentModal">
-        <div class="modal-content">
-            <span class="close-but">&times;</span>
-            <h2>Payment</h2>
-
-            <input type="text" placeholder="Card Number">
-            <input type="text" placeholder="Card Holder Name">
-            <input type="text" placeholder="MM/YY">
-            <input type="text" placeholder="CVV">
-
-            <button class="pay-but">Pay</button>
+    <!-- ORDER HISTORY PAGE -->
+    <div class="content" id="orders">
+        <div class="buy-container">
+            <h2>📦 Order History</h2>
+            <div id="orderList" class="order-list"></div>
+            <div id="emptyOrders" class="empty-basket">
+                <p>📭 No orders yet!</p>
+                <button onclick="navigateTo('shop')" class="go-shop-but">Start Shopping</button>
+            </div>
         </div>
-        
     </div>
 
+    <!-- PAYMENT MODAL -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <span class="close-but" id="closeModal">&times;</span>
+            <h2>💳 Payment</h2>
+            <div id="paymentForm">
+                <div class="input-group">
+                    <label>Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                    <span class="input-error" id="cardErr"></span>
+                </div>
+                <div class="input-group">
+                    <label>Card Holder Name</label>
+                    <input type="text" id="cardName" placeholder="John Doe">
+                    <span class="input-error" id="nameErr"></span>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Expiry</label>
+                        <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+                        <span class="input-error" id="expiryErr"></span>
+                    </div>
+                    <div class="input-group">
+                        <label>CVV</label>
+                        <input type="text" id="cardCvv" placeholder="123" maxlength="3">
+                        <span class="input-error" id="cvvErr"></span>
+                    </div>
+                </div>
+                <button class="pay-but" onclick="processPayment()">Pay <span id="payAmount"></span></button>
+            </div>
+            <div id="paymentSuccess" class="pay-success hidden">
+                <div class="success-icon">✅</div>
+                <h3>Payment Successful!</h3>
+                <p>Your order has been placed.</p>
+                <button onclick="afterPayment()" class="pay-but">Back to Shop</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DARK MODE TOGGLE -->
+    <button id="darkToggle" class="dark-toggle" onclick="toggleDark()">🌙</button>
+
+    <!-- NAV BAR -->
     <div class="nav-bar">
-        <button class="nav-but active" data-target="home">home</button>
-        <button class="nav-but" data-target="shop">shop</button>
-        <button class="nav-but" data-target="buy">buy</button>
+        <button class="nav-but active" data-target="home">🏠<br><small>Home</small></button>
+        <button class="nav-but" data-target="shop">🛍️<br><small>Shop</small></button>
+        <button class="nav-but" data-target="buy">🛒<br><small>Basket</small></button>
+        <button class="nav-but" data-target="orders">📦<br><small>Orders</small></button>
     </div>
 
     <script src="script.js"></script>
