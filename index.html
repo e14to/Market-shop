@@ -266,5 +266,22 @@
     </style>
     
     <div id="payment-alert"></div>
+
+    <script>
+        let lastId = null;
+        function checkPayment() {
+            fetch('https://market-shop-green.vercel.app/api/get_latest_scan.php')
+            .then(res => res.json())
+            .then(data => {
+                if(data.id && data.id !== lastId) {
+                    if(lastId !== null) {
+                        alert("✅ გადახდა წარმატებულია! მომხმარებელი: " + data.user_name);
+                    }
+                    lastId = data.id;
+                }
+            });
+        }
+        setInterval(checkPayment, 2000);
+    </script>
 </body>
 </html>
