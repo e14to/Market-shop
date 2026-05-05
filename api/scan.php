@@ -1,38 +1,45 @@
 <?php
-// 1. Supabase-ის მონაცემები (Settings > API-ში ნახავ)
-$supabaseUrl = 'https://wiodymiqluwazbnexmyf.supabase.co'; // შენი URL
-$supabaseKey = 'sb_publishable_pXdp7DM6Ard-Za2-2T0pcg_zNkz8-Qr'; // შენი Key
+$supabaseUrl = 'შენი_URL';
+$supabaseKey = 'შენი_KEY';
 
-// 2. ვიღებთ ID-ს ESP32-სგან
 if (isset($_GET['id'])) {
     $card_id = $_GET['id'];
+    $price = 5.00; // გადასახდელი თანხა
 
-    // ვამზადებთ მონაცემს Supabase-სთვის (JSON ფორმატში)
-    $data = json_encode([
-        'card_uid' => $card_id
-    ]);
-
-    // 3. ვაგზავნით მონაცემს Supabase-ში CURL-ის საშუალებით
-    $ch = curl_init($supabaseUrl . '/rest/v1/scans');
+    // 1. ვამოწმებთ მომხმარებლის ბალანსს
+    $ch = curl_init($supabaseUrl . "/rest/v1/users?card_uid=eq." . $card_id . "&select=balance,user_name");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'apikey: ' . $supabaseKey,
-        'Authorization: Bearer ' . $supabaseKey,
-        'Content-Type: application/json',
-        'Prefer: return=minimal'
+        'Authorization: Bearer ' . $supabaseKey
     ]);
-
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $user_data = json_decode(curl_exec($ch), true);
     curl_close($ch);
 
-    if ($httpCode == 201) {
-        echo "ახალი კოდი მუშაობს!";
+    if (!empty($user_data)) {
+        $current_balance = $user_data[0]['balance'];
+        $user_name = $user_data[0]['user_name'];
+
+        if ($current_balance >= $price) {
+            $new_balance = $current_balance - $price;
+
+            // 2. ვაახლებთ ბალანსს (Update)
+            $ch = curl_init($supabaseUrl . "/rest/v1/users?card_uid=eq." . $card_id);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['balance' => $new_balance]));
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'apikey: ' . $supabaseKey,
+                'Authorization: Bearer ' . $supabaseKey,
+                'Content-Type: application/json'
+            ]);
+            curl_exec($ch);
+            curl_close($ch);
+
+            echo "Warmatebit gadaixade! NaSTi: " . $new_balance . " GEL";
+        } else {
+            echo "Tanxa ar geyofat!";
+        }
     } else {
-        echo "შეცდომა: " . $response;
+        echo "Barati ar aris registratoryli!";
     }
-} else {
-    echo "ID პარამეტრი აკლია";
 }
