@@ -1,7 +1,7 @@
 <?php
 // 1. Supabase-ის მონაცემები (Settings > API-ში ნახავ)
 $supabaseUrl = 'https://wiodymiqluwazbnexmyf.supabase.co'; // შენი URL
-$supabaseKey = 'აქ_ჩაწერე_შენი_ANON_PUBLIC_KEY'; // შენი Key
+$supabaseKey = 'sb_publishable_pXdp7DM6Ard-Za2-2T0pcg_zNkz8-Qr'; // შენი Key
 
 // 2. ვიღებთ ID-ს ESP32-სგან
 if (isset($_GET['id'])) {
