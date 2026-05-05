@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
     curl_close($ch);
 
     if ($httpCode == 201) {
-        echo "წარმატებით ჩაიწერა Supabase-ში!";
+        echo "ახალი კოდი მუშაობს!";
     } else {
         echo "შეცდომა: " . $response;
     }
