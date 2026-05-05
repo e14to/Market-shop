@@ -10,6 +10,38 @@
     </style>
     <!-- გვერდი ავტომატურად განახლდება ყოველ 3 წამში -->
     <meta http-equiv="refresh" content="3">
+    <script>
+    let lastScanId = null;
+
+    async function checkNewPayment() {
+        try {
+            // აქ მიუთითე შენი Vercel-ის API ლინკი, რომელიც ბოლო სკანირებას აბრუნებს
+            const response = await fetch('https://market-shop-green.vercel.app/api/get_latest_scan.php');
+            const data = await response.json();
+
+            if (data && data.id !== lastScanId) {
+                if (lastScanId !== null) {
+                    showPaymentAlert(data.user_name, data.balance);
+                }
+                lastScanId = data.id;
+            }
+        } catch (error) {
+            console.error('Error checking payment:', error);
+        }
+    }
+
+    function showPaymentAlert(name, balance) {
+        const alertBox = document.getElementById('payment-alert');
+        alertBox.innerHTML = `✅ წარმატებით გადაიხადე!<br>მომხმარებელი: ${name}<br>ნაშთი: ${balance} GEL`;
+        alertBox.style.display = 'block';
+        
+        setTimeout(() => {
+            alertBox.style.display = 'none';
+        }, 5000); // 5 წამში გაქრება
+    }
+
+    setInterval(checkNewPayment, 2000); // 2 წამში ერთხელ შემოწმება
+</script>
 </head>
 <body>
     <div class="card">

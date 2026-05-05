@@ -652,3 +652,21 @@ body.dark .stock-badge { background: #3a2e00; color: #ffc107; }
     .modal-content { border-radius: 20px 20px 0 0; padding: 24px 18px 28px; }
     .hero h1 { font-size: 3rem; }
 }
+
+    #payment-alert {
+        display: none;
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(46, 204, 113, 0.95);
+        color: white;
+        padding: 20px 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 1000;
+        font-size: 20px;
+        text-align: center;
+        border: 2px solid white;
+        backdrop-filter: blur(5px);
+    }
