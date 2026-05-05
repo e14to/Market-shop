@@ -1,13 +1,12 @@
 <?php
-$supabaseUrl = 'შენი_URL';
-$supabaseKey = 'შენი_KEY';
+$supabaseUrl = 'https://wiodymiqluwazbnexmyf.supabase.co'; // შენი პროექტის URL
+$supabaseKey = 'sb_publishable_pXdp7DM6Ard-Za2-2T0pcg_zNkz8-Qr'; // სურათზე რაც ვნახეთ
 
 if (isset($_GET['id'])) {
-    // ვაქცევთ ID-ს დიდ ასოებად, რომ ბაზას დაემთხვეს
-    $card_id = strtoupper(trim($_GET['id'])); 
+    $card_id = strtoupper(trim($_GET['id'])); // ყველაფერს დიდ ასოებად ვაქცევთ
     $price = 5.00;
 
-    // 1. ვეძებთ მომხმარებელს users ცხრილში
+    // 1. მომხმარებლის ძებნა
     $url = $supabaseUrl . "/rest/v1/users?card_uid=eq." . $card_id . "&select=user_name,balance";
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -26,7 +25,7 @@ if (isset($_GET['id'])) {
         if ($current_balance >= $price) {
             $new_balance = $current_balance - $price;
 
-            // 2. ვაახლებთ ბალანსს
+            // 2. ბალანსის განახლება
             $updateUrl = $supabaseUrl . "/rest/v1/users?card_uid=eq." . $card_id;
             $ch = curl_init($updateUrl);
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
@@ -39,7 +38,7 @@ if (isset($_GET['id'])) {
             curl_exec($ch);
             curl_close($ch);
 
-            // 3. ვწერთ ისტორიას scans ცხრილში (რომ საიტმა დაინახოს)
+            // 3. ისტორიის ჩაწერა 'scans' ცხრილში (საიტისთვის)
             $historyUrl = $supabaseUrl . "/rest/v1/scans";
             $ch = curl_init($historyUrl);
             curl_setopt($ch, CURLOPT_POST, 1);
@@ -57,7 +56,6 @@ if (isset($_GET['id'])) {
             echo "Tanxa ar geyofat! Nashti: " . $current_balance . " GEL";
         }
     } else {
-        // თუ მაინც ვერ იპოვა, დაგვიბეჭდოს რა ID-ს ეძებდა (შესამოწმებლად)
         echo "Barati ar aris registratoryli! (ID: " . $card_id . ")";
     }
 }
