@@ -7,36 +7,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<div id="payment-alert" style="display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #2ecc71; color: white; padding: 15px 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 9999; text-align: center; font-family: 'DM Sans', sans-serif;">
-</div>
+<div id="payment-alert"></div>
 
-<script>
-    let lastScanId = null;
-
-    function checkRFIDPayment() {
-        // ამოწმებს ბოლო ტრანზაქციას
+<script src="script.js"></script> <script>
+    // RFID გადახდის შემოწმება
+    let rfidLastId = null;
+    function checkRFID() {
         fetch('/api/get_latest_scan.php')
         .then(res => res.json())
         .then(data => {
-            if (data.id && data.id !== lastScanId) {
-                if (lastScanId !== null) {
+            if(data.id && data.id !== rfidLastId) {
+                if(rfidLastId !== null) {
                     const alertBox = document.getElementById('payment-alert');
                     alertBox.innerHTML = `✅ გადახდა წარმატებულია!<br>
                                          <b>მომხმარებელი:</b> ${data.user_name}<br>
                                          <b>ნაშთი:</b> ${data.balance} GEL`;
                     alertBox.style.display = 'block';
-                    
-                    // 5 წამში ქრება
                     setTimeout(() => { alertBox.style.display = 'none'; }, 5000);
                 }
-                lastScanId = data.id;
+                rfidLastId = data.id;
             }
-        })
-        .catch(err => console.log("კავშირის მოლოდინში..."));
+        });
     }
-
-    // ყოველ 2 წამში ამოწმებს ბაზას
-    setInterval(checkRFIDPayment, 2000);
+    setInterval(checkRFID, 2000);
 </script>
 
 <body>
@@ -276,28 +269,5 @@
         <button class="nav-but" data-target="orders">📦<br><small>Orders</small></button>
     </div>
 
-    <script src="script.js"></script>
-
-    <style>
-        #payment-alert {
-            display: none;
-            position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(46, 204, 113, 0.95);
-            color: white;
-            padding: 20px 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            z-index: 1000;
-            font-size: 20px;
-            text-align: center;
-            border: 2px solid white;
-            backdrop-filter: blur(5px);
-        }
-    </style>
-    
-    <div id="payment-alert"></div>
 </body>
 </html>

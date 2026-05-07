@@ -305,3 +305,14 @@ function renderOrders() {
 }
 
 renderOrders();
+
+const products = [
+    { id: 1, name: 'Apple', price: 2.50, img: 'apple.jpg', cat: 'fruit' },
+    { id: 2, name: 'Banana', price: 1.80, img: 'banana.jpg', cat: 'fruit' }
+];
+
+// და ეს ფუნქცია აუცილებლად ბოლოში:
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    updateWidget();
+});
