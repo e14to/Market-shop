@@ -58,7 +58,6 @@ function addToBasket(name, price, btn) {
         basket.push({ name, price, qty: 1 });
     }
 
-    // Button bounce animation
     if (btn) {
         btn.classList.add('added');
         btn.textContent = '✓ Added!';
@@ -83,8 +82,9 @@ function changeQty(name, delta) {
     const item = basket.find(i => i.name === name);
     if (!item) return;
     item.qty += delta;
-    if (item.qty <= 0) removeFromBasket(name);
-    else {
+    if (item.qty <= 0) {
+        removeFromBasket(name);
+    } else {
         updateBasketUI();
         updateWidget();
     }
@@ -157,7 +157,6 @@ function updateBasketUI() {
 function filterProducts(category, clickedBtn) {
     const products = document.querySelectorAll('.product-card');
 
-    // Update active filter button
     document.querySelectorAll('.filter-buttons button').forEach(b => b.classList.remove('active'));
     if (clickedBtn) clickedBtn.classList.add('active');
 
@@ -242,13 +241,12 @@ function processPayment() {
     setErr('cardErr', ''); setErr('nameErr', ''); setErr('expiryErr', ''); setErr('cvvErr', '');
 
     if (number.length < 16) { setErr('cardErr', 'Enter a valid 16-digit card number'); valid = false; }
-    if (name.length < 2) { setErr('nameErr', 'Enter cardholder name'); valid = false; }
+    if (name.length < 2)    { setErr('nameErr', 'Enter cardholder name'); valid = false; }
     if (!/^\d{2}\/\d{2}$/.test(expiry)) { setErr('expiryErr', 'Format: MM/YY'); valid = false; }
-    if (cvv.length < 3) { setErr('cvvErr', 'Enter 3-digit CVV'); valid = false; }
+    if (cvv.length < 3)     { setErr('cvvErr', 'Enter 3-digit CVV'); valid = false; }
 
     if (!valid) return;
 
-    // Save order to history
     const order = {
         id: '#' + Math.random().toString(36).substring(2, 7).toUpperCase(),
         date: new Date().toLocaleDateString(),
@@ -304,15 +302,6 @@ function renderOrders() {
     `).join('');
 }
 
+// ─── Init ─────────────────────────────────────────────────────
 renderOrders();
-
-const products = [
-    { id: 1, name: 'Apple', price: 2.50, img: 'apple.jpg', cat: 'fruit' },
-    { id: 2, name: 'Banana', price: 1.80, img: 'banana.jpg', cat: 'fruit' }
-];
-
-// და ეს ფუნქცია აუცილებლად ბოლოში:
-document.addEventListener('DOMContentLoaded', () => {
-    renderProducts();
-    updateWidget();
-});
+updateWidget();

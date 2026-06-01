@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,33 +7,10 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-
-<div id="payment-alert"></div>
-
-<script src="script.js"></script> <script>
-    // RFID გადახდის შემოწმება
-    let rfidLastId = null;
-    function checkRFID() {
-        fetch('/api/get_latest_scan.php')
-        .then(res => res.json())
-        .then(data => {
-            if(data.id && data.id !== rfidLastId) {
-                if(rfidLastId !== null) {
-                    const alertBox = document.getElementById('payment-alert');
-                    alertBox.innerHTML = `✅ გადახდა წარმატებულია!<br>
-                                         <b>მომხმარებელი:</b> ${data.user_name}<br>
-                                         <b>ნაშთი:</b> ${data.balance} GEL`;
-                    alertBox.style.display = 'block';
-                    setTimeout(() => { alertBox.style.display = 'none'; }, 5000);
-                }
-                rfidLastId = data.id;
-            }
-        });
-    }
-    setInterval(checkRFID, 2000);
-</script>
-
 <body>
+
+    <!-- Payment Alert (RFID) -->
+    <div id="payment-alert"></div>
 
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
@@ -174,6 +152,138 @@
                 <button class="add-but" onclick="addToBasket('Orange Juice', 5.00, this)">+ Add to Basket</button>
             </div>
 
+            <!-- ── 15 NEW PRODUCTS ── -->
+
+            <div class="product-card" data-category="fruits" data-name="Mango" data-price="7.50" data-stock="18">
+                <div class="stock-badge">18 left</div>
+                <img src="mango.webp" alt="Mango" class="product-img">
+                <p class="product-caption">Mango</p>
+                <div class="rating">★★★★★ <span>(74)</span></div>
+                <p class="product-price">7.50₾</p>
+                <button class="add-but" onclick="addToBasket('Mango', 7.50, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="fruits" data-name="Strawberry" data-price="9.00" data-stock="22">
+                <div class="stock-badge">22 left</div>
+                <img src="https://placehold.co/120x120/fff0f0/333?text=🍓" alt="Strawberry" class="product-img">
+                <p class="product-caption">Strawberry</p>
+                <div class="rating">★★★★★ <span>(112)</span></div>
+                <p class="product-price">9.00₾</p>
+                <button class="add-but" onclick="addToBasket('Strawberry', 9.00, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card sale" data-category="fruits" data-name="Watermelon" data-price="5.00" data-stock="10">
+                <div class="sale-badge">SALE</div>
+                <img src="https://placehold.co/120x120/f0fff0/333?text=🍉" alt="Watermelon" class="product-img">
+                <p class="product-caption">Watermelon</p>
+                <div class="rating">★★★★☆ <span>(66)</span></div>
+                <p class="product-price">5.00₾ <s class="old-price">7.00₾</s></p>
+                <button class="add-but" onclick="addToBasket('Watermelon', 5.00, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="fruits" data-name="Grapes" data-price="6.00" data-stock="15">
+                <div class="stock-badge">15 left</div>
+                <img src="https://placehold.co/120x120/f5f0ff/333?text=🍇" alt="Grapes" class="product-img">
+                <p class="product-caption">Grapes</p>
+                <div class="rating">★★★★☆ <span>(49)</span></div>
+                <p class="product-price">6.00₾</p>
+                <button class="add-but" onclick="addToBasket('Grapes', 6.00, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="fruits" data-name="Pear" data-price="3.50" data-stock="28">
+                <img src="https://placehold.co/120x120/f9fff0/333?text=🍐" alt="Pear" class="product-img">
+                <p class="product-caption">Pear</p>
+                <div class="rating">★★★★☆ <span>(38)</span></div>
+                <p class="product-price">3.50₾</p>
+                <button class="add-but" onclick="addToBasket('Pear', 3.50, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card sale" data-category="fruits" data-name="Peach" data-price="4.00" data-stock="20">
+                <div class="sale-badge">SALE</div>
+                <img src="https://placehold.co/120x120/fff3e0/333?text=🍑" alt="Peach" class="product-img">
+                <p class="product-caption">Peach</p>
+                <div class="rating">★★★★★ <span>(57)</span></div>
+                <p class="product-price">4.00₾ <s class="old-price">5.50₾</s></p>
+                <button class="add-but" onclick="addToBasket('Peach', 4.00, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="fruits" data-name="Pineapple" data-price="8.50" data-stock="12">
+                <div class="stock-badge">12 left</div>
+                <img src="https://placehold.co/120x120/fffde7/333?text=🍍" alt="Pineapple" class="product-img">
+                <p class="product-caption">Pineapple</p>
+                <div class="rating">★★★★☆ <span>(43)</span></div>
+                <p class="product-price">8.50₾</p>
+                <button class="add-but" onclick="addToBasket('Pineapple', 8.50, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="fruits" data-name="Lemon" data-price="2.00" data-stock="40">
+                <img src="https://placehold.co/120x120/fffff0/333?text=🍋" alt="Lemon" class="product-img">
+                <p class="product-caption">Lemon</p>
+                <div class="rating">★★★★☆ <span>(31)</span></div>
+                <p class="product-price">2.00₾</p>
+                <button class="add-but" onclick="addToBasket('Lemon', 2.00, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="vegetables" data-name="Potato" data-price="1.20" data-stock="60">
+                <img src="https://placehold.co/120x120/fdf6e3/333?text=🥔" alt="Potato" class="product-img">
+                <p class="product-caption">Potato</p>
+                <div class="rating">★★★★☆ <span>(95)</span></div>
+                <p class="product-price">1.20₾</p>
+                <button class="add-but" onclick="addToBasket('Potato', 1.20, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="vegetables" data-name="Eggplant" data-price="3.80" data-stock="14">
+                <div class="stock-badge">14 left</div>
+                <img src="https://placehold.co/120x120/f5eef8/333?text=🍆" alt="Eggplant" class="product-img">
+                <p class="product-caption">Eggplant</p>
+                <div class="rating">★★★★☆ <span>(27)</span></div>
+                <p class="product-price">3.80₾</p>
+                <button class="add-but" onclick="addToBasket('Eggplant', 3.80, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="vegetables" data-name="Spinach" data-price="2.50" data-stock="35">
+                <img src="https://placehold.co/120x120/eafaf1/333?text=🥬" alt="Spinach" class="product-img">
+                <p class="product-caption">Spinach</p>
+                <div class="rating">★★★★★ <span>(63)</span></div>
+                <p class="product-price">2.50₾</p>
+                <button class="add-but" onclick="addToBasket('Spinach', 2.50, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card sale" data-category="vegetables" data-name="Corn" data-price="2.00" data-stock="25">
+                <div class="sale-badge">SALE</div>
+                <img src="https://placehold.co/120x120/fef9e7/333?text=🌽" alt="Corn" class="product-img">
+                <p class="product-caption">Corn</p>
+                <div class="rating">★★★★☆ <span>(52)</span></div>
+                <p class="product-price">2.00₾ <s class="old-price">3.00₾</s></p>
+                <button class="add-but" onclick="addToBasket('Corn', 2.00, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="vegetables" data-name="Garlic" data-price="1.00" data-stock="50">
+                <img src="https://placehold.co/120x120/fdfefe/333?text=🧄" alt="Garlic" class="product-img">
+                <p class="product-caption">Garlic</p>
+                <div class="rating">★★★★★ <span>(80)</span></div>
+                <p class="product-price">1.00₾</p>
+                <button class="add-but" onclick="addToBasket('Garlic', 1.00, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="vegetables" data-name="Zucchini" data-price="3.00" data-stock="18">
+                <div class="stock-badge">18 left</div>
+                <img src="https://placehold.co/120x120/eafaf1/333?text=🥒" alt="Zucchini" class="product-img">
+                <p class="product-caption">Zucchini</p>
+                <div class="rating">★★★☆☆ <span>(22)</span></div>
+                <p class="product-price">3.00₾</p>
+                <button class="add-but" onclick="addToBasket('Zucchini', 3.00, this)">+ Add to Basket</button>
+            </div>
+
+            <div class="product-card" data-category="vegetables" data-name="Cauliflower" data-price="5.50" data-stock="9">
+                <div class="stock-badge">9 left</div>
+                <img src="https://placehold.co/120x120/fdfefe/333?text=🥦" alt="Cauliflower" class="product-img">
+                <p class="product-caption">Cauliflower</p>
+                <div class="rating">★★★★☆ <span>(34)</span></div>
+                <p class="product-price">5.50₾</p>
+                <button class="add-but" onclick="addToBasket('Cauliflower', 5.50, this)">+ Add to Basket</button>
+            </div>
+
         </div>
 
         <div id="noResults" class="no-results hidden">
@@ -268,6 +378,34 @@
         <button class="nav-but" data-target="buy">🛒<br><small>Basket</small></button>
         <button class="nav-but" data-target="orders">📦<br><small>Orders</small></button>
     </div>
+
+    <!-- Scripts loaded at end of body so DOM is ready -->
+    <script src="script.js"></script>
+    <script>
+        // RFID payment polling
+        let rfidLastId = null;
+
+        function checkRFID() {
+            fetch('/api/get_latest_scan.php')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.id && data.id !== rfidLastId) {
+                        if (rfidLastId !== null) {
+                            const alertBox = document.getElementById('payment-alert');
+                            alertBox.innerHTML = `✅ გადახდა წარმატებულია!<br>
+                                                  <b>მომხმარებელი:</b> ${data.user_name}<br>
+                                                  <b>ნაშთი:</b> ${data.balance} GEL`;
+                            alertBox.style.display = 'block';
+                            setTimeout(() => { alertBox.style.display = 'none'; }, 5000);
+                        }
+                        rfidLastId = data.id;
+                    }
+                })
+                .catch(() => { /* silently ignore network errors during polling */ });
+        }
+
+        setInterval(checkRFID, 2000);
+    </script>
 
 </body>
 </html>

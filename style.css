@@ -214,7 +214,13 @@ body.dark .toast { background: #fff; color: #1a1a1a; }
     border: 1px solid var(--border);
     position: relative;
     transition: transform 0.25s, box-shadow 0.25s;
-    overflow: hidden;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card .add-but {
+    margin-top: auto;
 }
 .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 
@@ -250,7 +256,8 @@ body.dark .stock-badge { background: #3a2e00; color: #ffc107; }
     height: 90px;
     object-fit: contain;
     border-radius: 10px;
-    margin-bottom: 8px;
+    margin: 0 auto 8px;
+    display: block;
     transition: transform 0.3s;
 }
 .product-card:hover .product-img { transform: scale(1.08); }
@@ -653,44 +660,28 @@ body.dark .stock-badge { background: #3a2e00; color: #ffc107; }
     .hero h1 { font-size: 3rem; }
 }
 
-    #payment-alert {
-        display: none;
-        position: fixed;
-        top: 20%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(46, 204, 113, 0.95);
-        color: white;
-        padding: 20px 40px;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        z-index: 1000;
-        font-size: 20px;
-        text-align: center;
-        border: 2px solid white;
-        backdrop-filter: blur(5px);
-    }
+/* ─── PAYMENT ALERT (RFID) ───────────────────────────────────── */
+#payment-alert {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 9999;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 16px;
+    border: 2px solid white;
+    backdrop-filter: blur(5px);
+    animation: slideDown 0.5s ease-out;
+}
 
-
-    #payment-alert {
-        display: none;
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #2ecc71;
-        color: white;
-        padding: 20px 40px;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        z-index: 9999;
-        text-align: center;
-        font-family: 'DM Sans', sans-serif;
-        border: 2px solid white;
-        animation: slideDown 0.5s ease-out;
-    }
-    
-    @keyframes slideDown {
-        from { top: -100px; opacity: 0; }
-        to { top: 20px; opacity: 1; }
-    }
+@keyframes slideDown {
+    from { top: -100px; opacity: 0; }
+    to { top: 20px; opacity: 1; }
+}
