@@ -5,322 +5,510 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Market Shop</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="iOS26-UltraGlass-Upgrade.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Payment Alert (RFID) -->
     <div id="payment-alert"></div>
-
-    <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
-    <!-- HOME PAGE -->
+    <!-- ═══════════════════════════════
+         HOME PAGE
+    ════════════════════════════════ -->
     <div class="content active" id="home">
-        <div class="hero">
-            <h1>Market<br><span>Shop</span></h1>
-            <p>Fresh vegetables, fruits & more — delivered to your door.</p>
-            <button id="homeShopBtn" class="home-now-but">Shop Now →</button>
+
+        <!-- Knife -->
+        <div class="knife-wrap">
+            <svg width="44" height="190" viewBox="0 0 44 190">
+                <rect x="14" y="0" width="16" height="70" rx="8" fill="#1a0f08"/>
+                <rect x="17" y="3" width="10" height="64" rx="5" fill="#2e1a0c"/>
+                <circle cx="22" cy="20" r="3" fill="#4a3020"/>
+                <circle cx="22" cy="37" r="3" fill="#4a3020"/>
+                <circle cx="22" cy="54" r="3" fill="#4a3020"/>
+                <rect x="11" y="68" width="22" height="10" rx="3" fill="#606060"/>
+                <rect x="13" y="69" width="18" height="7" rx="2" fill="#888"/>
+                <path d="M22 78 L31 83 L25 188 L19 188 Z" fill="#b8b8b8"/>
+                <path d="M22 78 L31 83 L29 148 L22 78 Z" fill="#d8d8d8"/>
+                <path d="M22 78 L13 83 L19 188 L22 186 Z" fill="#a0a0a0"/>
+                <line x1="22" y1="80" x2="22" y2="186" stroke="rgba(255,255,255,0.55)" stroke-width=".9"/>
+            </svg>
         </div>
+
+        <!-- Glow + board line -->
+        <div class="tglow"></div>
+        <div class="bline"></div>
+
+        <!-- Whole tomato -->
+        <div class="tomato-whole">
+            <svg width="148" height="148" viewBox="0 0 148 148">
+                <ellipse cx="74" cy="132" rx="46" ry="9" fill="rgba(0,0,0,0.45)"/>
+                <ellipse cx="74" cy="80" rx="56" ry="52" fill="#b81c0c"/>
+                <ellipse cx="74" cy="78" rx="56" ry="52" fill="#cc2210"/>
+                <ellipse cx="74" cy="76" rx="56" ry="52" fill="#e03018"/>
+                <ellipse cx="74" cy="92" rx="52" ry="36" fill="#c01808" opacity=".5"/>
+                <path d="M74 24 Q63 43 65 78" stroke="#b01808" stroke-width="1.5" fill="none" opacity=".55"/>
+                <path d="M74 24 Q85 43 83 78" stroke="#b01808" stroke-width="1.5" fill="none" opacity=".55"/>
+                <path d="M74 24 Q54 40 60 74" stroke="#b01808" stroke-width="1" fill="none" opacity=".35"/>
+                <path d="M74 24 Q94 40 88 74" stroke="#b01808" stroke-width="1" fill="none" opacity=".35"/>
+                <ellipse cx="55" cy="56" rx="17" ry="11" fill="rgba(255,255,255,0.22)" transform="rotate(-25,55,56)"/>
+                <ellipse cx="62" cy="49" rx="6" ry="3.5" fill="rgba(255,255,255,0.38)" transform="rotate(-25,62,49)"/>
+                <circle cx="74" cy="26" r="11" fill="#1e5a0a"/>
+                <path d="M74 26 Q58 11 46 20 Q55 29 66 28 Z" fill="#2e7a14"/>
+                <path d="M74 26 Q90 11 102 20 Q93 29 82 28 Z" fill="#2e7a14"/>
+                <path d="M74 26 Q64 8 72 2 Q76 11 76 26 Z" fill="#3a9018"/>
+                <path d="M74 26 Q84 8 76 2 Q72 11 72 26 Z" fill="#3a9018"/>
+                <path d="M74 26 Q50 17 48 6 Q60 13 72 26 Z" fill="#2a6e10"/>
+                <rect x="71" y="2" width="6" height="16" rx="3" fill="#1e5a0a"/>
+                <path d="M74 2 Q80 9 78 18" stroke="#46aa22" stroke-width="1.5" fill="none"/>
+            </svg>
+        </div>
+
+        <!-- Left half -->
+        <div class="half-l">
+            <svg width="148" height="148" viewBox="0 0 148 148">
+                <defs><clipPath id="lc"><rect x="0" y="0" width="74" height="148"/></clipPath></defs>
+                <ellipse cx="74" cy="132" rx="32" ry="7" fill="rgba(0,0,0,0.4)"/>
+                <g clip-path="url(#lc)">
+                    <ellipse cx="74" cy="76" rx="56" ry="52" fill="#e03018"/>
+                    <ellipse cx="55" cy="56" rx="17" ry="11" fill="rgba(255,255,255,0.2)" transform="rotate(-25,55,56)"/>
+                    <circle cx="74" cy="26" r="11" fill="#1e5a0a"/>
+                    <path d="M74 26 Q58 11 46 20 Q55 29 66 28 Z" fill="#2e7a14"/>
+                    <path d="M74 26 Q64 8 72 2 Q76 11 76 26 Z" fill="#3a9018"/>
+                    <rect x="71" y="2" width="6" height="16" rx="3" fill="#1e5a0a"/>
+                </g>
+                <rect x="72" y="24" width="3" height="106" fill="#a01008"/>
+                <ellipse cx="74" cy="78" rx="40" ry="38" fill="#f04030" clip-path="url(#lc)" opacity=".65"/>
+                <ellipse cx="74" cy="78" rx="24" ry="22" fill="#ff6040" clip-path="url(#lc)" opacity=".5"/>
+                <path d="M47 60 Q39 65 41 74 Q50 78 55 70 Q55 61 47 60 Z" fill="#e05030" opacity=".9"/>
+                <path d="M44 80 Q36 87 39 96 Q48 98 53 90 Q53 80 44 80 Z" fill="#e05030" opacity=".9"/>
+                <path d="M52 98 Q46 104 50 110 Q57 111 59 105 Q58 98 52 98 Z" fill="#e05030" opacity=".9"/>
+                <ellipse cx="48" cy="67" rx="5.5" ry="3" fill="#f0d060" transform="rotate(-15,48,67)"/>
+                <ellipse cx="46" cy="88" rx="5.5" ry="3" fill="#e8c850" transform="rotate(-10,46,88)"/>
+                <ellipse cx="54" cy="104" rx="4.5" ry="2.5" fill="#f0d060" transform="rotate(-5,54,104)"/>
+            </svg>
+        </div>
+
+        <!-- Right half -->
+        <div class="half-r">
+            <svg width="148" height="148" viewBox="0 0 148 148">
+                <defs><clipPath id="rc"><rect x="74" y="0" width="74" height="148"/></clipPath></defs>
+                <ellipse cx="74" cy="132" rx="32" ry="7" fill="rgba(0,0,0,0.4)"/>
+                <g clip-path="url(#rc)">
+                    <ellipse cx="74" cy="76" rx="56" ry="52" fill="#e03018"/>
+                    <circle cx="74" cy="26" r="11" fill="#1e5a0a"/>
+                    <path d="M74 26 Q90 11 102 20 Q93 29 82 28 Z" fill="#2e7a14"/>
+                    <path d="M74 26 Q84 8 76 2 Q72 11 72 26 Z" fill="#3a9018"/>
+                    <rect x="71" y="2" width="6" height="16" rx="3" fill="#1e5a0a"/>
+                </g>
+                <rect x="73" y="24" width="3" height="106" fill="#a01008"/>
+                <ellipse cx="74" cy="78" rx="40" ry="38" fill="#f04030" clip-path="url(#rc)" opacity=".65"/>
+                <ellipse cx="74" cy="78" rx="24" ry="22" fill="#ff6040" clip-path="url(#rc)" opacity=".5"/>
+                <path d="M101 60 Q109 65 107 74 Q98 78 93 70 Q93 61 101 60 Z" fill="#e05030" opacity=".9"/>
+                <path d="M104 80 Q112 87 109 96 Q100 98 95 90 Q95 80 104 80 Z" fill="#e05030" opacity=".9"/>
+                <path d="M96 98 Q102 104 98 110 Q91 111 89 105 Q90 98 96 98 Z" fill="#e05030" opacity=".9"/>
+                <ellipse cx="100" cy="67" rx="5.5" ry="3" fill="#f0d060" transform="rotate(15,100,67)"/>
+                <ellipse cx="102" cy="88" rx="5.5" ry="3" fill="#e8c850" transform="rotate(10,102,88)"/>
+                <ellipse cx="94" cy="104" rx="4.5" ry="2.5" fill="#f0d060" transform="rotate(5,94,104)"/>
+            </svg>
+        </div>
+
+        <!-- Splash -->
+        <div class="splash">
+            <svg width="170" height="170" viewBox="0 0 170 170">
+                <ellipse cx="85" cy="85" rx="55" ry="15" fill="#d82010" opacity=".8" transform="rotate(0,85,85)"/>
+                <ellipse cx="85" cy="85" rx="55" ry="15" fill="#cc1808" opacity=".7" transform="rotate(36,85,85)"/>
+                <ellipse cx="85" cy="85" rx="55" ry="15" fill="#d82010" opacity=".75" transform="rotate(72,85,85)"/>
+                <ellipse cx="85" cy="85" rx="55" ry="15" fill="#c81408" opacity=".65" transform="rotate(108,85,85)"/>
+                <ellipse cx="85" cy="85" rx="55" ry="15" fill="#d82010" opacity=".7" transform="rotate(144,85,85)"/>
+                <circle cx="22" cy="62" r="6" fill="#d82010"/>
+                <circle cx="148" cy="66" r="5" fill="#d82010"/>
+                <circle cx="85" cy="12" r="5" fill="#cc1808"/>
+                <circle cx="32" cy="120" r="6" fill="#d82010"/>
+                <circle cx="136" cy="114" r="5" fill="#cc1808"/>
+                <circle cx="52" cy="18" r="4" fill="#d82010"/>
+                <circle cx="118" cy="20" r="4" fill="#cc1808"/>
+            </svg>
+        </div>
+
+        <!-- Juice particles -->
+        <div class="pt" style="top:calc(50% - 66%);left:calc(50%);width:7px;height:7px;background:#e03018;animation-delay:1.0s;--tx:translate(-120px,-80px)"></div>
+        <div class="pt" style="top:calc(50% - 66%);left:calc(50%);width:6px;height:6px;background:#f0cc40;animation-delay:1.0s;--tx:translate(110px,-90px)"></div>
+        <div class="pt" style="top:calc(50% - 66%);left:calc(50%);width:5px;height:5px;background:#e03018;animation-delay:1.02s;--tx:translate(-70px,-110px)"></div>
+        <div class="pt" style="top:calc(50% - 66%);left:calc(50%);width:7px;height:7px;background:#f0cc40;animation-delay:1.01s;--tx:translate(90px,-105px)"></div>
+        <div class="pt" style="top:calc(50% - 66%);left:calc(50%);width:5px;height:5px;background:#e03018;animation-delay:.99s;--tx:translate(-140px,-40px)"></div>
+        <div class="pt" style="top:calc(50% - 66%);left:calc(50%);width:4px;height:4px;background:#f0cc40;animation-delay:1.03s;--tx:translate(130px,-55px)"></div>
+        <div class="pt" style="top:calc(50% - 66%);left:calc(50%);width:5px;height:5px;background:#e03018;animation-delay:.98s;--tx:translate(-90px,-120px)"></div>
+
+        <!-- Floating vegetables -->
+        <!-- Carrot -->
+        <div class="veg-item" style="top:14%;left:3%;animation-delay:1.15s;--from:translateY(35px) scale(.35) rotate(-20deg);--to:translateY(0) scale(1) rotate(-10deg)">
+            <svg width="65" height="105" viewBox="0 0 65 105">
+                <ellipse cx="32" cy="101" rx="16" ry="4" fill="rgba(0,0,0,0.3)"/>
+                <path d="M32 12 Q50 20 48 58 Q46 88 32 100 Q18 88 16 58 Q14 20 32 12 Z" fill="#e05c08"/>
+                <path d="M32 12 Q46 20 44 56 Q42 85 32 98" stroke="#b83c04" stroke-width="1.5" fill="none" opacity=".6"/>
+                <path d="M20 33 Q32 30 44 33" stroke="#c04408" stroke-width="1" fill="none" opacity=".5"/>
+                <path d="M18 48 Q32 44 46 48" stroke="#c04408" stroke-width="1" fill="none" opacity=".45"/>
+                <path d="M18 63 Q32 59 46 63" stroke="#c04408" stroke-width="1" fill="none" opacity=".4"/>
+                <path d="M20 78 Q32 74 44 78" stroke="#c04408" stroke-width="1" fill="none" opacity=".35"/>
+                <ellipse cx="24" cy="34" rx="5" ry="12" fill="rgba(255,255,255,0.18)" transform="rotate(-15,24,34)"/>
+                <circle cx="32" cy="13" r="9" fill="#1e6a0a"/>
+                <path d="M32 8 Q24 -8 18 -4 Q23 6 30 10 Z" fill="#2e8a18"/>
+                <path d="M32 8 Q40 -8 46 -4 Q41 6 34 10 Z" fill="#2e8a18"/>
+                <path d="M32 8 Q27 -13 32 -15 Q35 -6 33 8 Z" fill="#3aa020"/>
+                <path d="M32 8 Q37 -11 32 -15 Q29 -6 31 8 Z" fill="#3aa020"/>
+                <path d="M32 8 Q18 -3 14 -10 Q21 -2 30 8 Z" fill="#2a7c14"/>
+            </svg>
+        </div>
+
+        <!-- Broccoli -->
+        <div class="veg-item" style="top:10%;right:4%;animation-delay:1.1s;--from:translateY(30px) scale(.35) rotate(12deg);--to:translateY(0) scale(1) rotate(6deg)">
+            <svg width="72" height="88" viewBox="0 0 72 88">
+                <ellipse cx="36" cy="85" rx="19" ry="4" fill="rgba(0,0,0,0.3)"/>
+                <path d="M30 48 Q34 43 36 48 L38 82 Q36 86 34 86 Q32 86 30 82 Z" fill="#3a7c18"/>
+                <path d="M33 48 Q35 44 36 48 L37 80" stroke="#2a5e0c" stroke-width="1" fill="none"/>
+                <path d="M33 63 Q24 56 20 50 Q26 48 32 55 Z" fill="#3a7c18"/>
+                <path d="M36 58 Q44 52 48 46 Q42 46 38 52 Z" fill="#3a7c18"/>
+                <circle cx="36" cy="30" r="20" fill="#256010"/>
+                <circle cx="23" cy="28" r="13" fill="#2e7e18"/>
+                <circle cx="49" cy="26" r="13" fill="#2a7c16"/>
+                <circle cx="36" cy="18" r="13" fill="#329020"/>
+                <circle cx="36" cy="38" r="12" fill="#226018"/>
+                <circle cx="20" cy="40" r="10" fill="#2a7c16"/>
+                <circle cx="52" cy="38" r="10" fill="#267618"/>
+                <circle cx="16" cy="30" r="7" fill="#329020"/>
+                <circle cx="56" cy="28" r="7" fill="#329020"/>
+                <circle cx="28" cy="13" r="7" fill="#3a9c22"/>
+                <circle cx="44" cy="13" r="7" fill="#329020"/>
+                <circle cx="13" cy="44" r="6" fill="#2a7c16"/>
+                <circle cx="59" cy="43" r="6" fill="#2a7c16"/>
+                <ellipse cx="26" cy="20" rx="6" ry="4" fill="rgba(255,255,255,0.2)" transform="rotate(-20,26,20)"/>
+                <ellipse cx="46" cy="17" rx="4" ry="3" fill="rgba(255,255,255,0.15)" transform="rotate(15,46,17)"/>
+                <circle cx="33" cy="30" r="1.5" fill="#145010"/>
+                <circle cx="40" cy="26" r="1.5" fill="#145010"/>
+                <circle cx="27" cy="34" r="1.5" fill="#145010"/>
+            </svg>
+        </div>
+
+        <!-- Lemon slice -->
+        <div class="veg-item" style="top:63%;left:3%;animation-delay:1.2s;--from:translateY(28px) scale(.35) rotate(18deg);--to:translateY(0) scale(1) rotate(10deg)">
+            <svg width="76" height="76" viewBox="0 0 76 76">
+                <ellipse cx="38" cy="73" rx="26" ry="5" fill="rgba(0,0,0,0.3)"/>
+                <circle cx="38" cy="38" r="35" fill="#d8aa10"/>
+                <circle cx="38" cy="38" r="35" fill="none" stroke="#b88a08" stroke-width="5"/>
+                <circle cx="38" cy="38" r="30" fill="#f0e030"/>
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#d4c020" stroke-width="4"/>
+                <circle cx="38" cy="38" r="26" fill="#f8f0d8"/>
+                <circle cx="38" cy="38" r="21" fill="#f0d828"/>
+                <line x1="38" y1="17" x2="38" y2="59" stroke="#c8a810" stroke-width="1.2"/>
+                <line x1="17" y1="38" x2="59" y2="38" stroke="#c8a810" stroke-width="1.2"/>
+                <line x1="23" y1="23" x2="53" y2="53" stroke="#c8a810" stroke-width="1.2"/>
+                <line x1="53" y1="23" x2="23" y2="53" stroke="#c8a810" stroke-width="1.2"/>
+                <circle cx="38" cy="38" r="5" fill="#d8aa10"/>
+                <path d="M38 38 L38 17 A21 21 0 0 1 52 23 Z" fill="#f8e040" opacity=".55"/>
+                <path d="M38 38 L52 23 A21 21 0 0 1 59 38 Z" fill="#f0d828" opacity=".55"/>
+                <path d="M38 38 L59 38 A21 21 0 0 1 52 53 Z" fill="#f8e040" opacity=".55"/>
+                <path d="M38 38 L52 53 A21 21 0 0 1 38 59 Z" fill="#f0d828" opacity=".55"/>
+                <path d="M38 38 L38 59 A21 21 0 0 1 23 53 Z" fill="#f8e040" opacity=".55"/>
+                <path d="M38 38 L23 53 A21 21 0 0 1 17 38 Z" fill="#f0d828" opacity=".55"/>
+                <path d="M38 38 L17 38 A21 21 0 0 1 23 23 Z" fill="#f8e040" opacity=".55"/>
+                <path d="M38 38 L23 23 A21 21 0 0 1 38 17 Z" fill="#f0d828" opacity=".55"/>
+                <ellipse cx="28" cy="26" rx="7" ry="5" fill="rgba(255,255,255,0.3)" transform="rotate(-30,28,26)"/>
+            </svg>
+        </div>
+
+        <!-- Cucumber slice -->
+        <div class="veg-item" style="top:25%;right:16%;animation-delay:1.25s;--from:translateY(25px) scale(.35) rotate(22deg);--to:translateY(0) scale(1) rotate(14deg)">
+            <svg width="70" height="70" viewBox="0 0 70 70">
+                <ellipse cx="35" cy="67" rx="23" ry="4" fill="rgba(0,0,0,0.3)"/>
+                <circle cx="35" cy="35" r="32" fill="#1e6e1e"/>
+                <circle cx="35" cy="35" r="29" fill="#e0f0d8"/>
+                <circle cx="35" cy="35" r="24" fill="#a8d890"/>
+                <circle cx="35" cy="35" r="10" fill="#88c870"/>
+                <ellipse cx="35" cy="16" rx="4" ry="5" fill="#c0e8a8"/>
+                <ellipse cx="35" cy="54" rx="4" ry="5" fill="#c0e8a8"/>
+                <ellipse cx="16" cy="35" rx="5" ry="4" fill="#c0e8a8"/>
+                <ellipse cx="54" cy="35" rx="5" ry="4" fill="#c0e8a8"/>
+                <ellipse cx="21" cy="21" rx="4" ry="4" fill="#c0e8a8"/>
+                <ellipse cx="49" cy="21" rx="4" ry="4" fill="#c0e8a8"/>
+                <ellipse cx="21" cy="49" rx="4" ry="4" fill="#c0e8a8"/>
+                <ellipse cx="49" cy="49" rx="4" ry="4" fill="#c0e8a8"/>
+                <ellipse cx="35" cy="17" rx="2" ry="2.5" fill="#e8d840"/>
+                <ellipse cx="35" cy="53" rx="2" ry="2.5" fill="#e8d840"/>
+                <ellipse cx="17" cy="35" rx="2.5" ry="2" fill="#e8d840"/>
+                <ellipse cx="53" cy="35" rx="2.5" ry="2" fill="#e8d840"/>
+                <ellipse cx="22" cy="22" rx="2" ry="2" fill="#e8d840"/>
+                <ellipse cx="48" cy="22" rx="2" ry="2" fill="#e8d840"/>
+                <ellipse cx="22" cy="48" rx="2" ry="2" fill="#e8d840"/>
+                <ellipse cx="48" cy="48" rx="2" ry="2" fill="#e8d840"/>
+                <line x1="35" y1="11" x2="35" y2="59" stroke="#7ab860" stroke-width=".8" opacity=".5"/>
+                <line x1="11" y1="35" x2="59" y2="35" stroke="#7ab860" stroke-width=".8" opacity=".5"/>
+                <line x1="19" y1="19" x2="51" y2="51" stroke="#7ab860" stroke-width=".8" opacity=".5"/>
+                <line x1="51" y1="19" x2="19" y2="51" stroke="#7ab860" stroke-width=".8" opacity=".5"/>
+                <ellipse cx="25" cy="23" rx="6" ry="4" fill="rgba(255,255,255,0.3)" transform="rotate(-35,25,23)"/>
+            </svg>
+        </div>
+
+        <!-- Green pepper ring -->
+        <div class="veg-item" style="top:61%;right:4%;animation-delay:1.18s;--from:translateY(25px) scale(.35) rotate(-10deg);--to:translateY(0) scale(1) rotate(-5deg)">
+            <svg width="76" height="68" viewBox="0 0 76 68">
+                <ellipse cx="38" cy="65" rx="26" ry="4" fill="rgba(0,0,0,0.3)"/>
+                <ellipse cx="38" cy="33" rx="35" ry="27" fill="#157010"/>
+                <ellipse cx="38" cy="33" rx="35" ry="27" fill="none" stroke="#0e5808" stroke-width="8"/>
+                <ellipse cx="38" cy="33" rx="21" ry="15" fill="#0c0b09"/>
+                <ellipse cx="38" cy="33" rx="33" ry="25" fill="#1e8c18"/>
+                <ellipse cx="38" cy="33" rx="27" ry="19" fill="#157010"/>
+                <ellipse cx="38" cy="33" rx="21" ry="15" fill="#0c0b09"/>
+                <ellipse cx="27" cy="28" rx="3" ry="2" fill="#e8dc50" opacity=".9"/>
+                <ellipse cx="50" cy="26" rx="3" ry="2" fill="#e8dc50" opacity=".9"/>
+                <ellipse cx="38" cy="20" rx="3" ry="2" fill="#e8dc50" opacity=".9"/>
+                <ellipse cx="32" cy="42" rx="3" ry="2" fill="#e8dc50" opacity=".8"/>
+                <ellipse cx="46" cy="41" rx="3" ry="2" fill="#e8dc50" opacity=".8"/>
+                <ellipse cx="24" cy="26" rx="7" ry="4" fill="rgba(255,255,255,0.2)" transform="rotate(-30,24,26)"/>
+                <path d="M16 28 Q18 33 16 38" stroke="rgba(255,255,255,0.25)" stroke-width="2" fill="none"/>
+                <path d="M60 26 Q58 31 60 36" stroke="rgba(255,255,255,0.25)" stroke-width="2" fill="none"/>
+            </svg>
+        </div>
+
+        <!-- Garlic -->
+        <div class="veg-item" style="top:28%;left:16%;animation-delay:1.28s;--from:translateY(22px) scale(.35);--to:translateY(0) scale(1)">
+            <svg width="58" height="68" viewBox="0 0 58 68">
+                <ellipse cx="29" cy="65" rx="15" ry="4" fill="rgba(0,0,0,0.3)"/>
+                <ellipse cx="29" cy="42" rx="24" ry="22" fill="#eee8e0"/>
+                <path d="M29 20 Q21 24 19 42 Q21 57 29 61 Q37 57 39 42 Q37 24 29 20 Z" fill="#e4ddd4" stroke="#c8bfb0" stroke-width=".8"/>
+                <path d="M29 20 Q17 26 15 44 Q19 57 29 61" stroke="#c0b8a8" stroke-width="1" fill="none"/>
+                <path d="M29 20 Q41 26 43 44 Q39 57 29 61" stroke="#c0b8a8" stroke-width="1" fill="none"/>
+                <path d="M29 20 Q13 30 13 48 Q17 59 27 61" stroke="#ccc4b4" stroke-width=".8" fill="none"/>
+                <path d="M29 20 Q45 30 45 48 Q41 59 31 61" stroke="#ccc4b4" stroke-width=".8" fill="none"/>
+                <ellipse cx="21" cy="34" rx="6" ry="8" fill="rgba(255,255,255,0.3)" transform="rotate(-15,21,34)"/>
+                <path d="M18 28 Q20 32 18 37" stroke="#d4ccbc" stroke-width=".8" fill="none"/>
+                <path d="M40 28 Q38 32 40 37" stroke="#d4ccbc" stroke-width=".8" fill="none"/>
+                <path d="M24 18 Q27 7 29 4 Q31 7 34 18" fill="#d8d0c0"/>
+                <path d="M27 16 Q29 6 29 4" stroke="#bfb7a7" stroke-width="1" fill="none"/>
+                <ellipse cx="29" cy="4" rx="3" ry="2" fill="#c0a878"/>
+                <path d="M21 62 Q19 67 17 69" stroke="#bfb7a7" stroke-width=".8" fill="none"/>
+                <path d="M29 64 Q29 69 29 71" stroke="#bfb7a7" stroke-width=".8" fill="none"/>
+                <path d="M37 62 Q39 67 41 69" stroke="#bfb7a7" stroke-width=".8" fill="none"/>
+            </svg>
+        </div>
+
+        <!-- Hero text -->
+        <div class="hero-content" style="opacity:0;animation:statsUp 0.9s cubic-bezier(0.2,1,0.4,1) 1.5s forwards">
+            <div class="hero-pill"><span class="hero-pill-dot"></span> Fresh Daily</div>
+            <h1 class="hero-title">Market<em>Shop</em></h1>
+            <p class="hero-sub">Premium produce, meats &amp; drinks —<br>brought straight to your door.</p>
+            <div class="hero-actions">
+                <button id="homeShopBtn" class="btn-primary">Shop Now →</button>
+                <button class="btn-glass">View Menu</button>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="stat-num">30+</div><div class="stat-label">Products</div></div>
+            <div class="hero-stat"><div class="stat-num">Free</div><div class="stat-label">Delivery</div></div>
+            <div class="hero-stat"><div class="stat-num">4.9★</div><div class="stat-label">Rating</div></div>
+        </div>
+
     </div>
 
-    <!-- SHOP PAGE -->
+    <!-- ═══════════════════════════════
+         SHOP PAGE
+    ════════════════════════════════ -->
     <div class="content" id="shop">
 
         <div id="cartWidget" class="cart-widget" onclick="navigateTo('buy')">
-            <span class="cart-icon">🛒</span>
+            <span>🛒</span>
             <span id="widgetCount" class="cart-count hidden"></span>
         </div>
 
-        <div class="shop-header">
-            <h2 class="shop-title">Our Products</h2>
-            <input type="text" id="searchBox" placeholder="🔍 Search products..." class="search-box">
-        </div>
-
-        <div class="filter-buttons" id="filterButtons">
-            <button class="active" onclick="filterProducts('all', this)">All</button>
-            <button onclick="filterProducts('vegetables', this)">🥦 Vegetables</button>
-            <button onclick="filterProducts('meat', this)">🥩 Meat</button>
-            <button onclick="filterProducts('fruits', this)">🍎 Fruits</button>
-            <button onclick="filterProducts('drink', this)">🥤 Drinks</button>
+        <div class="shop-topbar">
+            <div class="shop-topbar-inner">
+                <div class="shop-header">
+                    <h2 class="shop-title">Our Products</h2>
+                    <input type="text" id="searchBox" placeholder="🔍  Search..." class="search-box">
+                </div>
+                <div class="filter-buttons">
+                    <button class="active" onclick="filterProducts('all', this)">✦ All</button>
+                    <button onclick="filterProducts('vegetables', this)">🥦 Vegetables</button>
+                    <button onclick="filterProducts('meat', this)">🥩 Meat</button>
+                    <button onclick="filterProducts('fruits', this)">🍎 Fruits</button>
+                    <button onclick="filterProducts('drink', this)">🥤 Drinks</button>
+                </div>
+            </div>
         </div>
 
         <div class="shop-grid" id="shopGrid">
-
-            <div class="product-card" data-category="vegetables" data-name="Tomato" data-price="6.50" data-stock="15">
+            <div class="product-card" data-category="vegetables" data-name="Tomato" data-price="6.50">
                 <div class="stock-badge">15 left</div>
-                <img src="tomato.webp" alt="Tomato" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🍅'">
+                <img src="tomatopng.webp" alt="Tomato" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🍅'">
                 <p class="product-caption">Tomato</p>
                 <div class="rating">★★★★☆ <span>(42)</span></div>
                 <p class="product-price">6.50₾</p>
                 <button class="add-but" onclick="addToBasket('Tomato', 6.50, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Carrot" data-price="1.80" data-stock="30">
+            <div class="product-card" data-category="vegetables" data-name="Carrot" data-price="1.80">
                 <div class="stock-badge">30 left</div>
-                <img src="carrot.webp" alt="Carrot" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🥕'">
+                <img src="carrot.webp" alt="Carrot" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🥕'">
                 <p class="product-caption">Carrot</p>
                 <div class="rating">★★★★★ <span>(88)</span></div>
                 <p class="product-price">1.80₾</p>
                 <button class="add-but" onclick="addToBasket('Carrot', 1.80, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Cucumber" data-price="4.50" data-stock="20">
+            <div class="product-card" data-category="vegetables" data-name="Cucumber" data-price="4.50">
                 <div class="stock-badge">20 left</div>
-                <img src="cucumber.webp" alt="Cucumber" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🥒'">
+                <img src="cucumber.webp" alt="Cucumber" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🥒'">
                 <p class="product-caption">Cucumber</p>
                 <div class="rating">★★★★☆ <span>(35)</span></div>
                 <p class="product-price">4.50₾</p>
                 <button class="add-but" onclick="addToBasket('Cucumber', 4.50, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Pepper" data-price="10.00" data-stock="10">
+            <div class="product-card" data-category="vegetables" data-name="Pepper" data-price="10.00">
                 <div class="stock-badge">10 left</div>
-                <img src="pepper.webp" alt="Pepper" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🌶️'">
+                <img src="pepperpng.webp" alt="Pepper" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🌶️'">
                 <p class="product-caption">Pepper</p>
                 <div class="rating">★★★★☆ <span>(21)</span></div>
                 <p class="product-price">10.00₾</p>
                 <button class="add-but" onclick="addToBasket('Pepper', 10.00, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Onion" data-price="1.50" data-stock="50">
-                <img src="onion.webp" alt="Onion" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🧅'">
+            <div class="product-card" data-category="vegetables" data-name="Onion" data-price="1.50">
+                <img src="onion.webp" alt="Onion" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🧅'">
                 <p class="product-caption">Onion</p>
                 <div class="rating">★★★☆☆ <span>(17)</span></div>
                 <p class="product-price">1.50₾</p>
                 <button class="add-but" onclick="addToBasket('Onion', 1.50, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Broccoli" data-price="8.00" data-stock="12">
+            <div class="product-card" data-category="vegetables" data-name="Broccoli" data-price="8.00">
                 <div class="stock-badge">12 left</div>
-                <img src="broccoli.webp" alt="Broccoli" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🥦'">
+                <img src="broccolpng.webp" alt="Broccoli" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🥦'">
                 <p class="product-caption">Broccoli</p>
                 <div class="rating">★★★★★ <span>(60)</span></div>
                 <p class="product-price">8.00₾</p>
                 <button class="add-but" onclick="addToBasket('Broccoli', 8.00, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card sale" data-category="fruits" data-name="Banana" data-price="4.50" data-stock="25">
+            <div class="product-card sale" data-category="fruits" data-name="Banana" data-price="4.50">
                 <div class="sale-badge">SALE</div>
-                <img src="banana.webp" alt="Banana" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🍌'">
+                <img src="bananapng.webp" alt="Banana" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🍌'">
                 <p class="product-caption">Banana</p>
                 <div class="rating">★★★★☆ <span>(54)</span></div>
                 <p class="product-price">4.50₾ <s class="old-price">5.50₾</s></p>
                 <button class="add-but" onclick="addToBasket('Banana', 4.50, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="drink" data-name="Coca-Cola" data-price="1.60" data-stock="100">
-                <img src="coca-cola.webp" alt="Coca-Cola" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🥤'">
+            <div class="product-card" data-category="drink" data-name="Coca-Cola" data-price="1.60">
+                <img src="cocacola.webp" alt="Coca-Cola" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🥤'">
                 <p class="product-caption">Coca-Cola</p>
                 <div class="rating">★★★★★ <span>(200)</span></div>
                 <p class="product-price">1.60₾</p>
                 <button class="add-but" onclick="addToBasket('Coca-Cola', 1.60, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card sale" data-category="fruits" data-name="Apple" data-price="1.50" data-stock="40">
+            <div class="product-card sale" data-category="fruits" data-name="Apple" data-price="1.50">
                 <div class="sale-badge">SALE</div>
-                <img src="apple.webp" alt="Apple" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🍎'">
+                <img src="apple.webp" alt="Apple" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🍎'">
                 <p class="product-caption">Apple</p>
                 <div class="rating">★★★★★ <span>(130)</span></div>
                 <p class="product-price">1.50₾ <s class="old-price">2.00₾</s></p>
                 <button class="add-but" onclick="addToBasket('Apple', 1.50, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="meat" data-name="Chicken Breast" data-price="18.00" data-stock="8">
+            <div class="product-card" data-category="meat" data-name="Chicken Breast" data-price="18.00">
                 <div class="stock-badge">8 left</div>
-                <img src="chicken.webp" alt="Chicken" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🍗'">
+                <img src="chickenpng.webp" alt="Chicken" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🍗'">
                 <p class="product-caption">Chicken Breast</p>
                 <div class="rating">★★★★☆ <span>(77)</span></div>
                 <p class="product-price">18.00₾</p>
                 <button class="add-but" onclick="addToBasket('Chicken Breast', 18.00, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="meat" data-name="Beef Steak" data-price="35.00" data-stock="5">
+            <div class="product-card" data-category="meat" data-name="Beef Steak" data-price="35.00">
                 <div class="stock-badge">5 left</div>
-                <img src="beef.webp" alt="Beef" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🥩'">
+                <img src="beef.webp" alt="Beef" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🥩'">
                 <p class="product-caption">Beef Steak</p>
                 <div class="rating">★★★★★ <span>(44)</span></div>
                 <p class="product-price">35.00₾</p>
                 <button class="add-but" onclick="addToBasket('Beef Steak', 35.00, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="drink" data-name="Orange Juice" data-price="5.00" data-stock="30">
-                <img src="juice.jpg" alt="Orange Juice" class="product-img" onerror="this.src='https://placehold.co/120x120/f9f9f9/555?text=🍊'">
+            <div class="product-card" data-category="drink" data-name="Orange Juice" data-price="5.00">
+                <img src="orengjuicpng.webp" alt="Orange Juice" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🍊'">
                 <p class="product-caption">Orange Juice</p>
                 <div class="rating">★★★★☆ <span>(90)</span></div>
                 <p class="product-price">5.00₾</p>
                 <button class="add-but" onclick="addToBasket('Orange Juice', 5.00, this)">+ Add to Basket</button>
             </div>
-
-            <!-- ── 15 NEW PRODUCTS ── -->
-
-            <div class="product-card" data-category="fruits" data-name="Mango" data-price="7.50" data-stock="18">
+            <div class="product-card" data-category="fruits" data-name="Mango" data-price="7.50">
                 <div class="stock-badge">18 left</div>
-                <img src="mango.webp" alt="Mango" class="product-img">
+                <img src="mangopng.webp" alt="Mango" class="product-img" onerror="this.src='https://placehold.co/120x120/1a1a2e/aaa?text=🥭'">
                 <p class="product-caption">Mango</p>
                 <div class="rating">★★★★★ <span>(74)</span></div>
                 <p class="product-price">7.50₾</p>
                 <button class="add-but" onclick="addToBasket('Mango', 7.50, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="fruits" data-name="Strawberry" data-price="9.00" data-stock="22">
-                <div class="stock-badge">22 left</div>
-                <img src="https://placehold.co/120x120/fff0f0/333?text=🍓" alt="Strawberry" class="product-img">
+            <div class="product-card" data-category="fruits" data-name="Strawberry" data-price="9.00">
+                <img src="strawberrypng.webp" alt="Strawberry" class="product-img">
                 <p class="product-caption">Strawberry</p>
                 <div class="rating">★★★★★ <span>(112)</span></div>
                 <p class="product-price">9.00₾</p>
                 <button class="add-but" onclick="addToBasket('Strawberry', 9.00, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card sale" data-category="fruits" data-name="Watermelon" data-price="5.00" data-stock="10">
+            <div class="product-card sale" data-category="fruits" data-name="Watermelon" data-price="5.00">
                 <div class="sale-badge">SALE</div>
-                <img src="https://placehold.co/120x120/f0fff0/333?text=🍉" alt="Watermelon" class="product-img">
+                <img src="wattermelon.webp" alt="Watermelon" class="product-img">
                 <p class="product-caption">Watermelon</p>
                 <div class="rating">★★★★☆ <span>(66)</span></div>
                 <p class="product-price">5.00₾ <s class="old-price">7.00₾</s></p>
                 <button class="add-but" onclick="addToBasket('Watermelon', 5.00, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="fruits" data-name="Grapes" data-price="6.00" data-stock="15">
-                <div class="stock-badge">15 left</div>
-                <img src="https://placehold.co/120x120/f5f0ff/333?text=🍇" alt="Grapes" class="product-img">
-                <p class="product-caption">Grapes</p>
-                <div class="rating">★★★★☆ <span>(49)</span></div>
-                <p class="product-price">6.00₾</p>
-                <button class="add-but" onclick="addToBasket('Grapes', 6.00, this)">+ Add to Basket</button>
-            </div>
-
-            <div class="product-card" data-category="fruits" data-name="Pear" data-price="3.50" data-stock="28">
-                <img src="https://placehold.co/120x120/f9fff0/333?text=🍐" alt="Pear" class="product-img">
-                <p class="product-caption">Pear</p>
-                <div class="rating">★★★★☆ <span>(38)</span></div>
-                <p class="product-price">3.50₾</p>
-                <button class="add-but" onclick="addToBasket('Pear', 3.50, this)">+ Add to Basket</button>
-            </div>
-
-            <div class="product-card sale" data-category="fruits" data-name="Peach" data-price="4.00" data-stock="20">
-                <div class="sale-badge">SALE</div>
-                <img src="https://placehold.co/120x120/fff3e0/333?text=🍑" alt="Peach" class="product-img">
-                <p class="product-caption">Peach</p>
-                <div class="rating">★★★★★ <span>(57)</span></div>
-                <p class="product-price">4.00₾ <s class="old-price">5.50₾</s></p>
-                <button class="add-but" onclick="addToBasket('Peach', 4.00, this)">+ Add to Basket</button>
-            </div>
-
-            <div class="product-card" data-category="fruits" data-name="Pineapple" data-price="8.50" data-stock="12">
-                <div class="stock-badge">12 left</div>
-                <img src="https://placehold.co/120x120/fffde7/333?text=🍍" alt="Pineapple" class="product-img">
-                <p class="product-caption">Pineapple</p>
-                <div class="rating">★★★★☆ <span>(43)</span></div>
-                <p class="product-price">8.50₾</p>
-                <button class="add-but" onclick="addToBasket('Pineapple', 8.50, this)">+ Add to Basket</button>
-            </div>
-
-            <div class="product-card" data-category="fruits" data-name="Lemon" data-price="2.00" data-stock="40">
-                <img src="https://placehold.co/120x120/fffff0/333?text=🍋" alt="Lemon" class="product-img">
-                <p class="product-caption">Lemon</p>
-                <div class="rating">★★★★☆ <span>(31)</span></div>
-                <p class="product-price">2.00₾</p>
-                <button class="add-but" onclick="addToBasket('Lemon', 2.00, this)">+ Add to Basket</button>
-            </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Potato" data-price="1.20" data-stock="60">
-                <img src="https://placehold.co/120x120/fdf6e3/333?text=🥔" alt="Potato" class="product-img">
+            <div class="product-card" data-category="vegetables" data-name="Potato" data-price="1.20">
+                <img src="potatopng.webp" alt="Potato" class="product-img">
                 <p class="product-caption">Potato</p>
                 <div class="rating">★★★★☆ <span>(95)</span></div>
                 <p class="product-price">1.20₾</p>
                 <button class="add-but" onclick="addToBasket('Potato', 1.20, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Eggplant" data-price="3.80" data-stock="14">
-                <div class="stock-badge">14 left</div>
-                <img src="https://placehold.co/120x120/f5eef8/333?text=🍆" alt="Eggplant" class="product-img">
-                <p class="product-caption">Eggplant</p>
-                <div class="rating">★★★★☆ <span>(27)</span></div>
-                <p class="product-price">3.80₾</p>
-                <button class="add-but" onclick="addToBasket('Eggplant', 3.80, this)">+ Add to Basket</button>
-            </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Spinach" data-price="2.50" data-stock="35">
-                <img src="https://placehold.co/120x120/eafaf1/333?text=🥬" alt="Spinach" class="product-img">
-                <p class="product-caption">Spinach</p>
-                <div class="rating">★★★★★ <span>(63)</span></div>
-                <p class="product-price">2.50₾</p>
-                <button class="add-but" onclick="addToBasket('Spinach', 2.50, this)">+ Add to Basket</button>
-            </div>
-
-            <div class="product-card sale" data-category="vegetables" data-name="Corn" data-price="2.00" data-stock="25">
-                <div class="sale-badge">SALE</div>
-                <img src="https://placehold.co/120x120/fef9e7/333?text=🌽" alt="Corn" class="product-img">
-                <p class="product-caption">Corn</p>
-                <div class="rating">★★★★☆ <span>(52)</span></div>
-                <p class="product-price">2.00₾ <s class="old-price">3.00₾</s></p>
-                <button class="add-but" onclick="addToBasket('Corn', 2.00, this)">+ Add to Basket</button>
-            </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Garlic" data-price="1.00" data-stock="50">
-                <img src="https://placehold.co/120x120/fdfefe/333?text=🧄" alt="Garlic" class="product-img">
+            <div class="product-card" data-category="vegetables" data-name="Garlic" data-price="1.00">
+                <img src="garlic.webp" alt="Garlic" class="product-img">
                 <p class="product-caption">Garlic</p>
                 <div class="rating">★★★★★ <span>(80)</span></div>
                 <p class="product-price">1.00₾</p>
                 <button class="add-but" onclick="addToBasket('Garlic', 1.00, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Zucchini" data-price="3.00" data-stock="18">
-                <div class="stock-badge">18 left</div>
-                <img src="https://placehold.co/120x120/eafaf1/333?text=🥒" alt="Zucchini" class="product-img">
-                <p class="product-caption">Zucchini</p>
-                <div class="rating">★★★☆☆ <span>(22)</span></div>
-                <p class="product-price">3.00₾</p>
-                <button class="add-but" onclick="addToBasket('Zucchini', 3.00, this)">+ Add to Basket</button>
+            <div class="product-card sale" data-category="fruits" data-name="Peach" data-price="4.00">
+                <div class="sale-badge">SALE</div>
+                <img src="peach.webp" alt="Peach" class="product-img">
+                <p class="product-caption">Peach</p>
+                <div class="rating">★★★★★ <span>(57)</span></div>
+                <p class="product-price">4.00₾ <s class="old-price">5.50₾</s></p>
+                <button class="add-but" onclick="addToBasket('Peach', 4.00, this)">+ Add to Basket</button>
             </div>
-
-            <div class="product-card" data-category="vegetables" data-name="Cauliflower" data-price="5.50" data-stock="9">
-                <div class="stock-badge">9 left</div>
-                <img src="https://placehold.co/120x120/fdfefe/333?text=🥦" alt="Cauliflower" class="product-img">
-                <p class="product-caption">Cauliflower</p>
-                <div class="rating">★★★★☆ <span>(34)</span></div>
-                <p class="product-price">5.50₾</p>
-                <button class="add-but" onclick="addToBasket('Cauliflower', 5.50, this)">+ Add to Basket</button>
-            </div>
-
         </div>
 
-        <div id="noResults" class="no-results hidden">
-            <p>😕 No products found.</p>
-        </div>
-
+        <div id="noResults" class="no-results hidden"><p>😕 No products found.</p></div>
     </div>
 
-    <!-- BASKET PAGE -->
+    <!-- ═══════════════════════════════
+         BASKET
+    ════════════════════════════════ -->
     <div class="content" id="buy">
         <div class="buy-container">
-            <h2>🛒 Your Basket</h2>
+            <h2 class="page-title">Your Basket 🛒</h2>
             <div id="basketList" class="basket-grid"></div>
             <div id="emptyBasket" class="empty-basket">
                 <p>🛍️ Your basket is empty!</p>
                 <button onclick="navigateTo('shop')" class="go-shop-but">Browse Products</button>
             </div>
             <div class="basket-summary" id="basketSummary" style="display:none">
-                <div class="summary-row">
-                    <span>Subtotal</span><span id="subtotalPrice">₾0.00</span>
-                </div>
-                <div class="summary-row">
-                    <span>Delivery</span><span class="delivery-free">FREE</span>
-                </div>
-                <div class="summary-row total-row">
-                    <span>Total</span><span id="totalPrice">₾0.00</span>
-                </div>
+                <div class="summary-row"><span>Subtotal</span><span id="subtotalPrice">₾0.00</span></div>
+                <div class="summary-row"><span>Delivery</span><span class="delivery-free">FREE</span></div>
+                <div class="summary-row total-row"><span>Total</span><span id="totalPrice">₾0.00</span></div>
                 <button class="clear-but" onclick="clearBasket()">🗑 Clear Basket</button>
                 <button id="openPayment" class="pay-now-but">Proceed to Payment →</button>
             </div>
         </div>
     </div>
 
-    <!-- ORDER HISTORY PAGE -->
+    <!-- ═══════════════════════════════
+         ORDERS
+    ════════════════════════════════ -->
     <div class="content" id="orders">
         <div class="buy-container">
-            <h2>📦 Order History</h2>
+            <h2 class="page-title">Order History 📦</h2>
             <div id="orderList" class="order-list"></div>
             <div id="emptyOrders" class="empty-basket">
                 <p>📭 No orders yet!</p>
@@ -329,10 +517,13 @@
         </div>
     </div>
 
-    <!-- PAYMENT MODAL -->
+    <!-- ═══════════════════════════════
+         PAYMENT MODAL
+    ════════════════════════════════ -->
     <div class="modal" id="paymentModal">
         <div class="modal-content">
-            <span class="close-but" id="closeModal">&times;</span>
+            <div class="modal-handle"></div>
+            <span class="close-but" id="closeModal">✕</span>
             <h2>💳 Payment</h2>
             <div id="paymentForm">
                 <div class="input-group">
@@ -341,7 +532,7 @@
                     <span class="input-error" id="cardErr"></span>
                 </div>
                 <div class="input-group">
-                    <label>Card Holder Name</label>
+                    <label>Cardholder Name</label>
                     <input type="text" id="cardName" placeholder="John Doe">
                     <span class="input-error" id="nameErr"></span>
                 </div>
@@ -368,44 +559,34 @@
         </div>
     </div>
 
-    <!-- DARK MODE TOGGLE -->
     <button id="darkToggle" class="dark-toggle" onclick="toggleDark()">🌙</button>
 
-    <!-- NAV BAR -->
-    <div class="nav-bar">
+    <nav class="nav-bar">
         <button class="nav-but active" data-target="home">🏠<br><small>Home</small></button>
         <button class="nav-but" data-target="shop">🛍️<br><small>Shop</small></button>
         <button class="nav-but" data-target="buy">🛒<br><small>Basket</small></button>
         <button class="nav-but" data-target="orders">📦<br><small>Orders</small></button>
-    </div>
+    </nav>
 
-    <!-- Scripts loaded at end of body so DOM is ready -->
     <script src="script.js"></script>
     <script>
-        // RFID payment polling
         let rfidLastId = null;
-
         function checkRFID() {
             fetch('/api/get_latest_scan.php')
-                .then(res => res.json())
+                .then(r => r.json())
                 .then(data => {
                     if (data.id && data.id !== rfidLastId) {
                         if (rfidLastId !== null) {
-                            const alertBox = document.getElementById('payment-alert');
-                            alertBox.innerHTML = `✅ გადახდა წარმატებულია!<br>
-                                                  <b>მომხმარებელი:</b> ${data.user_name}<br>
-                                                  <b>ნაშთი:</b> ${data.balance} GEL`;
-                            alertBox.style.display = 'block';
-                            setTimeout(() => { alertBox.style.display = 'none'; }, 5000);
+                            const a = document.getElementById('payment-alert');
+                            a.innerHTML = `✅ გადახდა წარმატებულია!<br><b>მომხმარებელი:</b> ${data.user_name}<br><b>ნაშთი:</b> ${data.balance} GEL`;
+                            a.style.display = 'block';
+                            setTimeout(() => { a.style.display = 'none'; }, 5000);
                         }
                         rfidLastId = data.id;
                     }
-                })
-                .catch(() => { /* silently ignore network errors during polling */ });
+                }).catch(() => {});
         }
-
         setInterval(checkRFID, 2000);
     </script>
-
 </body>
 </html>

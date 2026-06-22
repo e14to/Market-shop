@@ -1,687 +1,1214 @@
-/* ─── Variables ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap');
+
+/* ══════════════════════════════════════
+   ცვლადები: iOS 26 "Liquid Glass" (თხევადი მინა)
+══════════════════════════════════════ */
 :root {
-    --bg: #f5f5f0;
-    --surface: #ffffff;
-    --surface2: #f0ede8;
-    --text: #1a1a1a;
-    --text2: #666;
-    --accent: #2ecc71;
-    --accent2: #27ae60;
-    --blue: #0a84ff;
-    --red: #e74c3c;
-    --border: #e8e5e0;
-    --shadow: 0 4px 20px rgba(0,0,0,0.08);
-    --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
-    --radius: 16px;
-    --radius-sm: 10px;
-    --nav-h: 72px;
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'DM Sans', sans-serif;
+  /* სუპერ სუფთა, ნაზი თეთრი კერამიკული ფონი თხევადი პრიზმული ნათებით */
+  --grad: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 50%, #d2d2d7 100%);
+  --orb1: rgba(99, 102, 241, 0.15);  
+  --orb2: rgba(16, 185, 129, 0.12);  
+  --orb3: rgba(255, 59, 48, 0.08);   
+  --orb4: rgba(0, 122, 255, 0.1);   
+
+  /* თხევადი მინის (Liquid Glass) პარამეტრები - მაღალი რეფრაქცია და სიკაშკაშე */
+  --glass-bg:     rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-hover:  rgba(255, 255, 255, 0.65);
+  --glass-card:   rgba(255, 255, 255, 0.3);
+  --glass-strong: rgba(255, 255, 255, 0.75);
+  --glass-shine:  rgba(255, 255, 255, 0.85);
+
+  /* კონტრასტული მუქი ტიპოგრაფია Apple-ის უახლესი სტილით */
+  --text:   #1d1d1f;
+  --text2:  #515154;
+  --text3:  #86868b;
+  --accent: #34c759;   /* iOS მწვანე */
+  --accent2:#248a3d;
+  --gold:   #ff9500;   /* iOS ნარინჯისფერი */
+  --red:    #ff3b30;   /* iOS წითელი */
+  --blue:   #007aff;   /* iOS ლურჯი */
+
+  --radius:    32px;   /* უფრო მომრგვალებული თხევადი ფორმები */
+  --radius-sm: 20px;
+  --nav-h:     88px;
+  --blur:       blur(40px) saturate(2.1); /* მაქსიმალური ფონის ბლური */
+  --blur-sm:    blur(20px) saturate(1.8);
+  
+  /* სუპერ რბილი სიღრმის ჩრდილები (Liquid Depth Drop Shadows) */
+  --shadow:  0 12px 40px rgba(0, 0, 0, 0.03), inset 0 2px 2px rgba(255, 255, 255, 0.95), 0 1px 2px rgba(0,0,0,0.01);
+  --shadow-lg: 0 32px 80px rgba(0, 0, 0, 0.06), inset 0 2px 3px rgba(255, 255, 255, 0.95), 0 2px 4px rgba(0,0,0,0.02);
+
+  --font: 'Inter', sans-serif;
+  --font-display: 'Syne', sans-serif;
 }
 
+/* მუქი რეჟიმი (Obsidian Liquid Glass) */
 body.dark {
-    --bg: #0f0f0f;
-    --surface: #1c1c1e;
-    --surface2: #2c2c2e;
-    --text: #f5f5f5;
-    --text2: #aaa;
-    --border: #333;
-    --shadow: 0 4px 20px rgba(0,0,0,0.4);
+  --grad: linear-gradient(135deg, #020204 0%, #0a0a0f 50%, #121217 100%);
+  --orb1: rgba(99, 102, 241, 0.22);
+  --orb2: rgba(16, 185, 129, 0.18);
+  --orb3: rgba(255, 59, 48, 0.12);
+  --orb4: rgba(0, 122, 255, 0.15);
+  
+  --glass-bg: rgba(25, 25, 35, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-card: rgba(255, 255, 255, 0.03);
+  --glass-hover: rgba(255, 255, 255, 0.09);
+  --glass-strong: rgba(12, 12, 18, 0.85);
+  --glass-shine: rgba(255, 255, 255, 0.15);
+
+  --text:   #ffffff;
+  --text2:  rgba(255, 255, 255, 0.75);
+  --text3:  rgba(255, 255, 255, 0.45);
+  --shadow:  0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1.5px 1.5px rgba(255, 255, 255, 0.07);
+  --shadow-lg: 0 32px 80px rgba(0, 0, 0, 0.55), inset 0 2px 2px rgba(255, 255, 255, 0.1);
 }
 
-/* ─── Reset ─────────────────────────────────────────────────── */
+/* ══════════════════════════════════════
+   ბაზისური სტილები და ანიმაციური ფონი
+══════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    transition: background 0.3s, color 0.3s;
-    -webkit-font-smoothing: antialiased;
+  font-family: var(--font);
+  background: var(--grad);
+  min-height: 100vh;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s ease;
+  position: relative;
 }
 
-/* ─── Pages ─────────────────────────────────────────────────── */
-.content { display: none; min-height: 100vh; padding-bottom: var(--nav-h); }
+/* მცურავი სუპერ-რბილი ფერადი ორბების ფონი */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 900px 800px at 10% 25%, var(--orb1) 0%, transparent 70%),
+    radial-gradient(ellipse 800px 700px at 90% 70%, var(--orb2) 0%, transparent 70%),
+    radial-gradient(ellipse 700px 600px at 70% 10%, var(--orb3) 0%, transparent 70%),
+    radial-gradient(ellipse 600px 500px at 25% 85%, var(--orb4) 0%, transparent 70%);
+  animation: orbShift 20s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes orbShift {
+  0%   { opacity: 0.85; transform: scale(1) translate(0px, 0px); }
+  50%  { opacity: 1;   transform: scale(1.08) translate(30px, -25px); }
+  100% { opacity: 0.9; transform: scale(0.92) translate(-15px, 20px); }
+}
+
+/* ულტრა-ნაზი მიკრო-ტექსტურა */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.98' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+/* ══════════════════════════════════════
+   გვერდების კონტეინერები
+══════════════════════════════════════ */
+.content {
+  display: none;
+  min-height: 100vh;
+  padding-bottom: calc(var(--nav-h) + 20px);
+  position: relative;
+  z-index: 1;
+}
 .content.active { display: flex; flex-direction: column; }
 
-/* ─── Toast ─────────────────────────────────────────────────── */
+/* ══════════════════════════════════════
+   შეტყობინების TOAST ეფექტი
+══════════════════════════════════════ */
 .toast {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-80px);
-    background: #1a1a1a;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 9999;
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    white-space: nowrap;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-120px);
+  background: var(--glass-strong);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1.5px solid var(--glass-border);
+  color: var(--text);
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 9999;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-lg);
 }
-body.dark .toast { background: #fff; color: #1a1a1a; }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
-/* ─── Dark Toggle ────────────────────────────────────────────── */
+/* ══════════════════════════════════════
+   თემის გადამრთველი ღილაკი
+══════════════════════════════════════ */
 .dark-toggle {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 500;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: var(--shadow);
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 500;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 50%;
+  width: 48px; height: 48px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text);
 }
+.dark-toggle:hover { background: var(--glass-hover); transform: rotate(15deg) scale(1.08); box-shadow: var(--shadow-lg); }
 
-/* ─── HOME ───────────────────────────────────────────────────── */
+/* ══════════════════════════════════════
+   მთავარი გვერდი (HOME) & ფოტო-რეალისტური 3D ანიმაციები
+══════════════════════════════════════ */
 #home.active {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200')
-        center/cover no-repeat;
-    color: white;
-    padding: 40px 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+  perspective: 1500px; /* 3D სივრცის რეალური სიღრმე */
+  transform-style: preserve-3d;
+  animation: boardShake 0.25s cubic-bezier(.36,.07,.19,.97) 0.98s both;
 }
 
-.hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 12vw, 5.5rem);
-    line-height: 1.05;
-    margin-bottom: 16px;
-    letter-spacing: -1px;
+@keyframes boardShake {
+  10%, 90% { transform: translate3d(-1.5px, 0.5px, 0); }
+  20%, 80% { transform: translate3d(2.5px, -1px, 0); }
+  30%, 50%, 70% { transform: translate3d(-3.5px, 1.5px, 0); }
+  40%, 60% { transform: translate3d(3.5px, -1px, 0); }
 }
-.hero h1 span { color: var(--accent); }
-.hero p {
-    font-size: clamp(1rem, 3vw, 1.25rem);
-    opacity: 0.85;
-    margin-bottom: 32px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.home-now-but {
-    padding: 16px 40px;
-    font-size: 1.05rem;
-    font-weight: 600;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: 0.3s;
-    letter-spacing: 0.5px;
-}
-.home-now-but:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(46,204,113,0.4); }
 
-/* ─── SHOP ───────────────────────────────────────────────────── */
-#shop {
-    background: var(--bg);
-    padding: 20px;
-    align-items: center;
-    padding-top: 60px;
+/* რეალისტური ლითონის დანის 3D ჩამოვარდნა */
+.knife-wrap {
+  position: absolute;
+  top: -260px;
+  left: 50%;
+  transform-style: preserve-3d;
+  transform: translateX(-14px) rotateX(-55deg) rotateY(190deg) rotateZ(10deg);
+  animation: kDrop3D 0.48s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s forwards,
+             kImpactBounce3D 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.98s forwards;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* დანის პირზე ლითონის დინამიკური ლივლივი (Metallic Reflection) */
+.knife-wrap::after {
+  content: '';
+  position: absolute;
+  top: 78px; left: 13px;
+  width: 18px; height: 110px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2), transparent);
+  transform: skewY(-25deg) translateX(-35px);
+  animation: knifeGleam3D 0.75s ease-out 1.1s forwards;
+  pointer-events: none;
+  z-index: 11;
+}
+
+@keyframes knifeGleam3D {
+  0% { transform: skewY(-25deg) translateX(-35px); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: skewY(-25deg) translateX(35px); opacity: 0; }
+}
+
+@keyframes kDrop3D { 
+  to { 
+    top: 85px; 
+    transform: translateX(-14px) rotateX(12deg) rotateY(0deg) rotateZ(0deg);
+  } 
+}
+@keyframes kImpactBounce3D {
+  0% { transform: translateX(-14px) rotateX(12deg) translateY(0); }
+  50% { transform: translateX(-14px) rotateX(6deg) translateY(-14px) rotateZ(-2deg); }
+  100% { transform: translateX(-14px) rotateX(12deg) translateY(0) rotateZ(0deg); }
+}
+
+/* პომიდვრის გაქრობა გაჭრის მომენტში */
+.tomato-whole {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -65%) translateZ(0);
+  z-index: 9;
+  animation: tHide 0s linear 0.98s forwards;
+  pointer-events: none;
+}
+@keyframes tHide { to { opacity: 0; } }
+
+/* პომიდვრის 3D გაჭრა - რეალისტური გადახრა და ინტენსიური ტრიალი */
+.half-l, .half-r {
+  position: absolute;
+  top: 50%; z-index: 10;
+  opacity: 0;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  animation: hShow 0s linear 0.98s forwards;
+}
+@keyframes hShow { to { opacity: 1; } }
+
+.half-l { 
+  right: calc(50% + 2px); 
+  transform: translateY(-65%) rotateY(0) translateZ(0);
+  animation: hShow 0s linear 0.98s forwards, 
+             goLeft3D 0.95s cubic-bezier(0.1, 0.9, 0.2, 1) 0.98s forwards; 
+}
+.half-r { 
+  left:  calc(50% + 2px); 
+  transform: translateY(-65%) rotateY(0) translateZ(0);
+  animation: hShow 0s linear 0.98s forwards, 
+             goRight3D 0.95s cubic-bezier(0.1, 0.9, 0.2, 1) 0.98s forwards; 
+}
+
+@keyframes goLeft3D { 
+  0% { transform: translateY(-65%) translateX(0) rotateY(0) rotateZ(0); }
+  100% { transform: translateY(-65%) translateX(-140px) rotateY(-50deg) rotateZ(-20deg) translateZ(60px); } 
+}
+@keyframes goRight3D { 
+  0% { transform: translateY(-65%) translateX(0) rotateY(0) rotateZ(0); }
+  100% { transform: translateY(-65%) translateX(-2px) rotateY(0) rotateZ(0); } /* მარჯვენა ნახევარი რჩება დაფაზე უფრო რეალისტურად, ოდნავ ბრუნდება */
+  100% { transform: translateY(-65%) translateX(140px) rotateY(50deg) rotateZ(20deg) translateZ(60px); } 
+}
+
+/* წვენის აფეთქება და წვეთები */
+.splash {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -65%);
+  z-index: 12; opacity: 0; pointer-events: none;
+  animation: splashAnim 0.58s cubic-bezier(0.1, 0.8, 0.15, 1) 0.98s forwards;
+}
+@keyframes splashAnim {
+  0%  { opacity: 0; transform: translate(-50%,-65%) scale(0.1); }
+  20% { opacity: 1; }
+  100%{ opacity: 0; transform: translate(-50%,-65%) scale(2.1); }
+}
+
+/* წვენის ნაწილაკები რეალისტური ვარდნის ტრაექტორიით */
+.pt {
+  position: absolute;
+  border-radius: 50%;
+  animation: ptFly3D 0.9s cubic-bezier(0.1, 0.8, 0.25, 1) 0.98s forwards;
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes ptFly3D {
+  0%  { opacity: 1; transform: translate3d(0, 0, 0) scale(1.2); }
+  35% { opacity: 1; }
+  100%{ opacity: 0; transform: var(--tx) translateY(180px) translateZ(40px) scale(0.1); } 
+}
+
+/* მცურავი ბოსტნეული 3D გარემოში */
+.veg-item {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  animation: vegFloatIn3D 1.3s cubic-bezier(0.19, 1, 0.22, 1) forwards,
+             vegHoverLoop3D 6s ease-in-out 1.3s infinite alternate;
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,0.05));
+}
+body.dark .veg-item {
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,0.4));
+}
+
+@keyframes vegFloatIn3D {
+  0%   { opacity: 0; transform: var(--from) rotateX(50deg) rotateY(-50deg); }
+  100% { opacity: 0.95; transform: var(--to) rotateX(12deg) rotateY(8deg); }
+}
+@keyframes vegHoverLoop3D {
+  0% { transform: var(--to) rotateX(12deg) rotateY(8deg) translate3d(0, 0, 0); }
+  100% { transform: var(--to) rotateX(8deg) rotateY(18deg) translate3d(0, -15px, 40px); }
+}
+
+/* წვენის აფეთქების რეალისტური ნათება */
+.tglow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -68%) scale(0.5);
+  width: 350px; height: 190px;
+  background: radial-gradient(ellipse, rgba(255, 59, 48, 0.5) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 70%);
+  z-index: 8; pointer-events: none;
+  opacity: 0;
+  animation: glowBurst3D 1.6s cubic-bezier(0.1, 1, 0.2, 1) 0.98s forwards;
+}
+
+@keyframes glowBurst3D {
+  0% { transform: translate(-50%, -68%) scale(0.4); opacity: 0; filter: blur(5px); }
+  10% { transform: translate(-50%, -68%) scale(1.6); opacity: 1; filter: blur(35px); }
+  100% { transform: translate(-50%, -68%) scale(1); opacity: 0.75; filter: blur(15px); }
+}
+
+/* საჭრელი დაფის ხაზი */
+.bline {
+  position: absolute;
+  top: calc(50% - 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
+  z-index: 8; pointer-events: none;
+  animation: blineExp 0.55s cubic-bezier(0.25, 1, 0.5, 1) 1.05s forwards;
+}
+body.dark .bline {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+}
+@keyframes blineExp { to { width: 420px; } }
+
+/* ══════════════════════════════════════
+   iOS 26 "Liquid Glass" ნავიგაციის პანელი და ღილაკები
+══════════════════════════════════════ */
+.hero-content {
+  position: relative;
+  z-index: 20;
+  max-width: 480px;
+  margin-top: 210px;
+}
+
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  border: 1.5px solid var(--glass-border);
+  color: var(--text);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 8px 22px; border-radius: 50px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+.hero-pill-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  animation: dotPulse 2s infinite;
+}
+@keyframes dotPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.65)} }
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 14vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -2.5px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #1d1d1f 0%, #424245 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+body.dark .hero-title {
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.75) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent), #10b981);
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: block;
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 34px;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+
+/* iOS 26 თხევადი მინის ეფექტის ღილაკი */
+.btn-primary {
+  padding: 16px 40px;
+  background: rgba(52, 199, 89, 0.2); /* ნახევრად გამჭვირვალე მწვანე მინა */
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  border: 1.5px solid rgba(52, 199, 89, 0.45);
+  color: var(--accent2);
+  border-radius: 50px;
+  font-family: var(--font);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow);
+}
+body.dark .btn-primary {
+  color: #5de896;
+  border-color: rgba(93, 232, 150, 0.3);
+  background: rgba(16, 185, 129, 0.15);
+}
+.btn-primary:hover { 
+  background: rgba(52, 199, 89, 0.9); 
+  color: white;
+  border-color: transparent;
+  transform: translateY(-2px) scale(1.02); 
+  box-shadow: 0 16px 32px rgba(52, 199, 89, 0.25); 
+}
+.btn-primary:active { transform: translateY(0) scale(0.98); }
+
+.btn-glass {
+  padding: 16px 32px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  border: 1.5px solid var(--glass-border);
+  color: var(--text);
+  border-radius: 50px;
+  font-family: var(--font);
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow);
+}
+.btn-glass:hover { 
+  background: var(--glass-hover); 
+  transform: translateY(-2px); 
+  border-color: rgba(0,0,0,0.18); 
+  box-shadow: var(--shadow-lg);
+}
+body.dark .btn-glass:hover {
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* სტატისტიკის პანელი */
+.hero-stats {
+  display: flex; gap: 0;
+  margin-top: 52px;
+  position: relative; z-index: 20;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 22px 32px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  animation: statsUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
+}
+@keyframes statsUp {
+  from { opacity:0; transform: translateY(20px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.hero-stat { text-align: center; padding: 0 30px; border-right: 1.5px solid var(--glass-border); }
+.hero-stat:last-child { border-right: none; }
+.stat-num { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--text); }
+.stat-label { font-size: 10px; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 5px; }
+
+/* ══════════════════════════════════════
+   მაღაზიის გვერდი (SHOP)
+══════════════════════════════════════ */
+#shop { padding: 0 20px 20px; align-items: center; }
+
+.shop-topbar {
+  position: sticky; top: 0; z-index: 100;
+  width: 100%; max-width: 980px;
+  padding: 16px 0 0;
+  background: transparent;
+  margin-bottom: 24px;
+}
+
+/* Liquid Glass ეფექტი ზედა პანელზე */
+.shop-topbar-inner {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1.5px solid var(--glass-border);
+  border-top: 1.5px solid var(--glass-shine);
+  border-radius: var(--radius);
+  padding: 16px 20px 0;
+  box-shadow: var(--shadow-lg);
+  position: relative;
 }
 
 .shop-header {
-    width: 100%;
-    max-width: 900px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-    gap: 12px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px; gap: 14px; flex-wrap: wrap;
 }
+
 .shop-title {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.8rem; font-weight: 800;
+  background: linear-gradient(135deg, #1d1d1f, #515154);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body.dark .shop-title {
+  background: linear-gradient(135deg, #ffffff, rgba(255,255,255,0.8));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .search-box {
-    padding: 10px 18px;
-    border-radius: 50px;
-    border: 1.5px solid var(--border);
-    background: var(--surface);
-    color: var(--text);
-    font-size: 14px;
-    outline: none;
-    min-width: 200px;
-    transition: 0.2s;
-    font-family: var(--font-body);
+  padding: 12px 22px;
+  border-radius: 50px;
+  border: 1.5px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  color: var(--text);
+  font-size: 14px;
+  font-family: var(--font);
+  outline: none;
+  min-width: 220px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow);
 }
-.search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(46,204,113,0.15); }
-.search-box::placeholder { color: var(--text2); }
+.search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(52, 199, 89, 0.15); }
+.search-box::placeholder { color: var(--text3); }
 
-/* Filter Buttons */
+/* ფილტრის ღილაკები */
 .filter-buttons {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px 0 20px;
-    width: 100%;
-    max-width: 900px;
+  display: flex; gap: 8px;
+  flex-wrap: nowrap; overflow-x: auto;
+  padding-bottom: 16px;
+  scrollbar-width: none;
 }
+.filter-buttons::-webkit-scrollbar { display: none; }
+
 .filter-buttons button {
-    padding: 8px 20px;
-    border: 1.5px solid var(--border);
-    border-radius: 50px;
-    background: var(--surface);
-    color: var(--text2);
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: 0.2s;
-    font-family: var(--font-body);
+  padding: 8px 22px;
+  border: 1.5px solid var(--glass-border);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  font-size: 13px; font-weight: 600;
+  font-family: var(--font);
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.3px;
+  box-shadow: var(--shadow);
 }
-.filter-buttons button:hover,
+.filter-buttons button:hover { border-color: var(--accent); color: var(--accent); background: rgba(52, 199, 89, 0.05); }
 .filter-buttons button.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
+  background: rgba(52, 199, 89, 0.85);
+  backdrop-filter: var(--blur-sm);
+  color: white;
+  border-color: transparent;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(52, 199, 89, 0.25);
 }
 
-/* Shop Grid */
+/* პროდუქტების ბადე */
 .shop-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
-    width: 100%;
-    max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 16px;
+  width: 100%; max-width: 980px;
+  margin-bottom: calc(var(--nav-h) + 24px);
 }
 
-/* Product Cards */
+/* ბარათები თხევადი მინის პრიალა კონტურით */
 .product-card {
-    background: var(--surface);
-    border-radius: var(--radius);
-    padding: 16px 12px 12px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border);
-    position: relative;
-    transition: transform 0.25s, box-shadow 0.25s;
-    overflow: visible;
-    display: flex;
-    flex-direction: column;
+  background: var(--glass-card);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1.5px solid var(--glass-border);
+  border-top: 1.5px solid var(--glass-shine);
+  border-radius: var(--radius);
+  padding: 22px 18px 18px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s, border-color 0.35s, background 0.35s;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  cursor: default;
+  box-shadow: inset 0 2px 2px rgba(255,255,255,0.9), 0 8px 24px rgba(0,0,0,0.02);
+}
+body.dark .product-card {
+  box-shadow: inset 0 1.5px 1.5px rgba(255,255,255,0.08), inset 0 -1px 12px rgba(255,255,255,0.02), 0 8px 28px rgba(0,0,0,0.3);
 }
 
-.product-card .add-but {
-    margin-top: auto;
+.product-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(52, 199, 89, 0.05) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.35s;
+  pointer-events: none;
 }
-.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 
-.product-card.sale { border-color: #f39c12; }
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent);
+}
+body.dark .product-card::after {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.04), inset 0 2px 2px rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(52, 199, 89, 0.2);
+}
+body.dark .product-card:hover {
+  box-shadow: 0 32px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(93, 232, 150, 0.2), inset 0 1.5px 1.5px rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.06);
+}
+.product-card:hover::before { opacity: 1; }
+.product-card.sale { border-color: rgba(255, 149, 0, 0.2); }
 
 .stock-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #fff3cd;
-    color: #856404;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 20px;
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(0, 0, 0, 0.03);
+  backdrop-filter: var(--blur-sm);
+  color: var(--text2);
+  font-size: 10px; font-weight: 700;
+  padding: 4px 12px; border-radius: 20px;
+  border: 1px solid var(--glass-border);
 }
-body.dark .stock-badge { background: #3a2e00; color: #ffc107; }
+body.dark .stock-badge {
+  background: rgba(255, 255, 255, 0.07);
+}
 
 .sale-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #f39c12;
-    color: white;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 20px;
+  position: absolute; top: 12px; left: 12px;
+  background: linear-gradient(135deg, var(--gold), #ff9500);
+  color: white;
+  font-size: 10px; font-weight: 800;
+  padding: 4px 12px; border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(255, 149, 0, 0.2);
 }
 
 .product-img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin: 0 auto 8px;
-    display: block;
-    transition: transform 0.3s;
+  width: 96px; height: 96px;
+  object-fit: contain;
+  border-radius: 14px;
+  margin: 6px auto 14px;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.06));
 }
-.product-card:hover .product-img { transform: scale(1.08); }
+body.dark .product-img {
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+}
+.product-card:hover .product-img { transform: scale(1.1) translateY(-4px); }
 
 .product-caption {
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--text);
-    margin: 4px 0 2px;
+  font-weight: 700; font-size: 14px;
+  color: var(--text);
+  margin-bottom: 4px;
 }
 
-.rating {
-    font-size: 11px;
-    color: #f39c12;
-    margin-bottom: 4px;
-}
-.rating span { color: var(--text2); }
+.rating { font-size: 11px; color: var(--gold); margin-bottom: 8px; }
+.rating span { color: var(--text3); }
 
 .product-price {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--accent2);
-    margin-bottom: 10px;
+  font-size: 16px; font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 14px;
 }
-.old-price { color: var(--text2); font-weight: 400; font-size: 12px; }
+.old-price { color: var(--text3); font-weight: 400; font-size: 12px; text-decoration: line-through; }
 
 .add-but {
-    width: 100%;
-    padding: 9px;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: 0.2s;
-    font-family: var(--font-body);
+  width: 100%; padding: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  color: var(--text);
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13px; font-weight: 700;
+  font-family: var(--font);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: auto;
+  box-shadow: var(--shadow);
 }
-.add-but:hover { background: var(--accent2); }
-.add-but.added { background: #27ae60; transform: scale(0.97); }
+.add-but:hover {
+  background: rgba(52, 199, 89, 0.85);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 8px 20px rgba(52, 199, 89, 0.25);
+}
+.add-but.added {
+  background: rgba(52, 199, 89, 1);
+  color: white;
+  border-color: transparent;
+  transform: scale(0.96);
+}
 
-.no-results {
-    text-align: center;
-    padding: 40px;
-    color: var(--text2);
-    font-size: 1.1rem;
-}
+.no-results { text-align: center; padding: 50px; color: var(--text2); }
 .hidden { display: none !important; }
 
-/* Cart Widget */
+/* მცურავი კალათის ვიჯეტი */
 .cart-widget {
-    position: fixed;
-    right: 20px;
-    bottom: calc(var(--nav-h) + 16px);
-    background: var(--accent);
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(46,204,113,0.4);
-    cursor: pointer;
-    z-index: 400;
-    transition: transform 0.2s;
+  position: fixed;
+  right: 20px;
+  bottom: calc(var(--nav-h) + 16px);
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  display: flex; justify-content: center; align-items: center;
+  cursor: pointer; z-index: 200;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 22px;
+  background: rgba(52, 199, 89, 0.85);
+  backdrop-filter: var(--blur-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(52, 199, 89, 0.25);
 }
-.cart-widget:hover { transform: scale(1.1); }
-.cart-icon { font-size: 22px; }
+.cart-widget:hover { transform: scale(1.12) translateY(-2px); box-shadow: 0 12px 32px rgba(52, 199, 89, 0.4); }
+
 .cart-count {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    background: var(--red);
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    min-width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid white;
+  position: absolute; top: -4px; right: -4px;
+  background: var(--red);
+  color: white;
+  font-size: 11px; font-weight: 800;
+  border-radius: 50%;
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #fbfbfd;
+}
+body.dark .cart-count {
+  border: 2px solid #0a0a0f;
 }
 
-/* ─── BASKET ─────────────────────────────────────────────────── */
+/* ══════════════════════════════════════
+   კალათის გვერდი (BASKET)
+══════════════════════════════════════ */
 #buy.active {
-    background: var(--bg);
-    justify-content: flex-start;
-    align-items: center;
-    padding: 24px 16px;
+  align-items: center;
+  padding: 32px 16px;
 }
 
 .buy-container {
-    background: var(--surface);
-    width: 100%;
-    max-width: 600px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-lg);
-    padding: 24px;
+  width: 100%; max-width: 580px;
 }
-.buy-container h2 {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--border);
-    padding-bottom: 14px;
-    color: var(--text);
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 2rem; font-weight: 800;
+  background: linear-gradient(135deg, #1d1d1f, #424245);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1.5px solid var(--glass-border);
+}
+body.dark .page-title {
+  background: linear-gradient(135deg, #ffffff, rgba(255,255,255,0.75));
 }
 
 .empty-basket {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text2);
-    font-size: 1.1rem;
+  text-align: center; padding: 64px 20px;
+  color: var(--text2);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
 }
-.go-shop-but {
-    margin-top: 16px;
-    padding: 12px 28px;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: 600;
-    font-family: var(--font-body);
-    transition: 0.2s;
-}
-.go-shop-but:hover { background: var(--accent2); }
+.empty-basket p { font-size: 1.15rem; margin-bottom: 6px; }
 
+.go-shop-but {
+  margin-top: 20px; padding: 13px 32px;
+  background: rgba(52, 199, 89, 0.85);
+  backdrop-filter: var(--blur-sm);
+  color: white;
+  border: none; border-radius: 50px;
+  cursor: pointer; font-weight: 700;
+  font-family: var(--font); font-size: 13px;
+  transition: all 0.25s;
+  box-shadow: 0 8px 18px rgba(52, 199, 89, 0.2);
+}
+.go-shop-but:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(52, 199, 89, 0.35); }
+
+/* კალათის ელემენტები */
 .basket-grid { display: flex; flex-direction: column; gap: 0; }
 
 .basket-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1.5px solid var(--glass-border);
+  transition: background-color 0.2s ease;
 }
+.basket-item:hover { background: rgba(0, 0, 0, 0.015); }
+body.dark .basket-item:hover { background: rgba(255, 255, 255, 0.02); }
 .basket-item-info { flex: 1; }
-.basket-item-name { font-weight: 600; font-size: 15px; color: var(--text); display: block; }
-.basket-item-unit { font-size: 12px; color: var(--text2); }
+.basket-item-name { font-weight: 700; font-size: 15px; color: var(--text); display: block; }
+.basket-item-unit { font-size: 12px; color: var(--text2); margin-top: 3px; }
 
 .basket-item-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--surface2);
-    border-radius: 50px;
-    padding: 4px 8px;
+  display: flex; align-items: center; gap: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 50px; padding: 4px 12px;
+  box-shadow: var(--shadow);
 }
 .qty-btn {
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s;
+  background: none; border: none;
+  color: var(--text2); font-size: 18px; font-weight: 700;
+  cursor: pointer; width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
 }
 .qty-btn:hover { background: var(--accent); color: white; }
-.qty-num { font-weight: 700; min-width: 20px; text-align: center; font-size: 15px; }
+.qty-num { font-weight: 700; min-width: 18px; text-align: center; font-size: 14px; color: var(--text); }
 
 .basket-item-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
 }
-.basket-item-right strong { color: var(--text); font-size: 15px; }
+.basket-item-right strong { color: var(--accent); font-size: 15px; font-weight: 800; }
 .remove-btn {
-    background: none;
-    border: none;
-    color: var(--red);
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 6px;
-    transition: 0.2s;
+  background: none; border: none;
+  color: var(--text3); cursor: pointer;
+  font-size: 13px; padding: 2px 6px;
+  border-radius: 6px; transition: all 0.2s;
 }
-.remove-btn:hover { background: rgba(231,76,60,0.1); }
+.remove-btn:hover { background: rgba(255, 59, 48, 0.15); color: var(--red); }
 
-.basket-summary { padding-top: 20px; }
+/* ჯამი და შეჯამება */
+.basket-summary { padding-top: 22px; }
 .summary-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    color: var(--text2);
-    font-size: 15px;
+  display: flex; justify-content: space-between;
+  padding: 10px 0; color: var(--text2); font-size: 15px;
 }
 .delivery-free { color: var(--accent); font-weight: 700; }
-.total-row { font-weight: 700; font-size: 18px; color: var(--text); border-top: 2px solid var(--border); padding-top: 14px; margin-top: 6px; }
+.total-row {
+  font-weight: 700; font-size: 19px; color: var(--text);
+  border-top: 1.5px solid var(--glass-border);
+  padding-top: 18px; margin-top: 10px;
+}
+.total-row span:last-child { color: var(--accent); }
 
 .clear-but {
-    width: 100%;
-    margin: 16px 0 10px;
-    padding: 12px;
-    background: var(--surface2);
-    color: var(--text2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.2s;
-    font-family: var(--font-body);
+  width: 100%; margin: 20px 0 12px;
+  padding: 14px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  color: var(--text2);
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer; font-size: 14px; font-weight: 700;
+  font-family: var(--font); transition: all 0.2s;
+  box-shadow: var(--shadow);
 }
-.clear-but:hover { background: #fde8e8; color: var(--red); border-color: var(--red); }
+.clear-but:hover { background: rgba(255, 59, 48, 0.1); color: var(--red); border-color: rgba(255, 59, 48, 0.3); }
 
 .pay-now-but {
-    width: 100%;
-    padding: 15px;
-    background: var(--blue);
-    color: white;
-    border: none;
-    border-radius: var(--radius-sm);
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.2s;
-    font-family: var(--font-body);
-    letter-spacing: 0.3px;
+  width: 100%; padding: 16px;
+  background: rgba(52, 199, 89, 0.85);
+  color: white;
+  border: none; border-radius: var(--radius-sm);
+  font-size: 15px; font-weight: 800;
+  font-family: var(--font); cursor: pointer;
+  transition: all 0.25s; letter-spacing: 0.5px;
+  box-shadow: 0 8px 24px rgba(52, 199, 89, 0.25);
 }
-.pay-now-but:hover { background: #0060d0; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(10,132,255,0.35); }
+.pay-now-but:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(52, 199, 89, 0.4); }
 
-/* ─── ORDERS ─────────────────────────────────────────────────── */
+/* ══════════════════════════════════════
+   შეკვეთების ისტორია (ORDERS)
+══════════════════════════════════════ */
 #orders.active {
-    background: var(--bg);
-    justify-content: flex-start;
-    align-items: center;
-    padding: 24px 16px;
+  align-items: center; padding: 32px 16px;
 }
 
-.order-list { display: flex; flex-direction: column; gap: 14px; }
+.order-list { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+
 .order-card {
-    background: var(--surface2);
-    border-radius: var(--radius-sm);
-    padding: 16px;
-    border: 1px solid var(--border);
+  background: var(--glass-card);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 20px; transition: all 0.25s;
+  position: relative; overflow: hidden;
+  box-shadow: var(--shadow);
 }
+.order-card::after {
+  content: '';
+  position: absolute; top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+}
+.order-card:hover { border-color: rgba(52, 199, 89, 0.25); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
 .order-header {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    margin-bottom: 8px;
-    color: var(--text);
+  display: flex; justify-content: space-between;
+  font-size: 14px; margin-bottom: 12px; color: var(--text);
 }
-.order-header strong { color: var(--blue); }
-.order-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
-}
+.order-header strong { color: var(--accent); font-weight: 800; }
+
+.order-items { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
 .order-items span {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 3px 10px;
-    font-size: 12px;
-    color: var(--text2);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-sm);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 12px; color: var(--text2);
 }
-.order-total { font-size: 15px; color: var(--text); }
-.order-total strong { color: var(--accent2); }
+.order-total { font-size: 15px; color: var(--text2); }
+.order-total strong { color: var(--accent); font-weight: 800; }
 
-/* ─── PAYMENT MODAL ──────────────────────────────────────────── */
+/* ══════════════════════════════════════
+   გადახდის ფანჯარა (PAYMENT MODAL)
+══════════════════════════════════════ */
 .modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: flex-end;
-    z-index: 1000;
-    backdrop-filter: blur(4px);
+  display: none; position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  justify-content: center; align-items: flex-end;
+  z-index: 1000;
 }
+body.dark .modal {
+  background: rgba(5, 3, 20, 0.7);
+}
+
 .modal-content {
-    background: var(--surface);
-    padding: 28px 24px 32px;
-    border-radius: 24px 24px 0 0;
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-    position: relative;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(40px) saturate(2);
+  -webkit-backdrop-filter: blur(40px) saturate(2);
+  border: 1.5px solid var(--glass-border);
+  border-top: 1.5px solid var(--glass-shine);
+  padding: 30px 24px 38px;
+  border-radius: 32px 32px 0 0;
+  width: 100%; max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0 -20px 60px rgba(0,0,0,0.06), inset 0 2px 2px rgba(255,255,255,0.8);
+  animation: slideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
+body.dark .modal-content {
+  background: rgba(15, 10, 35, 0.75);
+  box-shadow: 0 -20px 60px rgba(0,0,0,0.6), inset 0 1.5px 1.5px rgba(255,255,255,0.15);
+}
+
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+.modal-handle {
+  width: 40px; height: 5px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
+  margin: 0 auto 24px;
+}
+body.dark .modal-handle {
+  background: var(--glass-border);
+}
+
 .modal-content h2 {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.6rem; font-weight: 800;
+  margin-bottom: 24px; color: var(--text);
 }
+
 .close-but {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 22px;
-    cursor: pointer;
-    color: var(--text2);
-    line-height: 1;
+  position: absolute; top: 24px; right: 24px;
+  font-size: 18px; cursor: pointer;
+  color: var(--text2);
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1.5px solid var(--glass-border);
+  transition: all 0.2s;
 }
+.close-but:hover { background: var(--glass-hover); color: var(--text); }
 
-.input-group { margin-bottom: 16px; }
+.input-group { margin-bottom: 18px; }
 .input-group label {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text2);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  display: block; font-size: 11px; font-weight: 700;
+  color: var(--text2); margin-bottom: 8px;
+  text-transform: uppercase; letter-spacing: 1px;
 }
-.input-group input, .modal-content input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--surface2);
-    color: var(--text);
-    font-size: 15px;
-    outline: none;
-    transition: 0.2s;
-    font-family: var(--font-body);
+.input-group input {
+  width: 100%; padding: 14px 18px;
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  color: var(--text);
+  font-size: 15px; font-family: var(--font);
+  outline: none; transition: all 0.25s;
+  box-shadow: var(--shadow);
 }
-.input-group input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(10,132,255,0.15); }
+.input-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.15); }
+.input-group input::placeholder { color: var(--text3); }
 
-.input-row { display: flex; gap: 12px; }
+.input-row { display: flex; gap: 14px; }
 .input-row .input-group { flex: 1; }
-
-.input-error { display: block; font-size: 11px; color: var(--red); margin-top: 4px; min-height: 16px; }
+.input-error { display: block; font-size: 11px; color: var(--red); margin-top: 5px; min-height: 16px; }
 
 .pay-but {
-    width: 100%;
-    margin-top: 8px;
-    padding: 14px;
-    background: var(--blue);
-    color: white;
-    border: none;
-    border-radius: var(--radius-sm);
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.2s;
-    font-family: var(--font-body);
+  width: 100%; margin-top: 12px; padding: 16px;
+  background: rgba(52, 199, 89, 0.85);
+  color: white;
+  border: none; border-radius: var(--radius-sm);
+  font-size: 15px; font-weight: 800;
+  font-family: var(--font); cursor: pointer;
+  transition: all 0.25s; letter-spacing: 0.5px;
+  box-shadow: 0 6px 20px rgba(52, 199, 89, 0.2);
 }
-.pay-but:hover { background: #0060d0; }
+.pay-but:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(52, 199, 89, 0.35); }
 
-.pay-success {
-    text-align: center;
-    padding: 20px 0;
-}
-.success-icon { font-size: 64px; margin-bottom: 16px; }
-.pay-success h3 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 8px; color: var(--text); }
-.pay-success p { color: var(--text2); margin-bottom: 24px; }
+.pay-success { text-align: center; padding: 22px 0 12px; }
+.success-icon { font-size: 76px; margin-bottom: 18px; animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes popIn { from { transform:scale(0.2); opacity:0; } to { transform:scale(1); opacity:1; } }
+.pay-success h3 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 10px; color: var(--text); }
+.pay-success p { color: var(--text2); margin-bottom: 30px; }
 
-/* ─── NAV BAR ────────────────────────────────────────────────── */
+/* ══════════════════════════════════════
+   ნავიგაციის პანელი (NAV BAR - Liquid Tab Surface)
+══════════════════════════════════════ */
 .nav-bar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding: 8px 0 12px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 300;
-    height: var(--nav-h);
-    backdrop-filter: blur(12px);
+  display: flex; justify-content: space-around; align-items: center;
+  background: rgba(255, 255, 255, 0.35); /* სუპერ თხევადი და გამჭვირვალე მინა */
+  backdrop-filter: blur(40px) saturate(2);
+  -webkit-backdrop-filter: blur(40px) saturate(2);
+  border-top: 1.5px solid var(--glass-shine);
+  padding: 8px 0 16px;
+  position: fixed; bottom: 0; width: 100%;
+  z-index: 300; height: var(--nav-h);
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.02), inset 0 2px 2px rgba(255, 255, 255, 0.85);
 }
+body.dark .nav-bar {
+  background: rgba(15, 10, 35, 0.45);
+  box-shadow: inset 0 1.5px 1.5px rgba(255,255,255,0.1);
+}
+
 .nav-but {
-    background: none;
-    border: none;
-    color: var(--text2);
-    font-size: 20px;
-    cursor: pointer;
-    padding: 4px 16px;
-    border-radius: 12px;
-    transition: 0.2s;
-    font-family: var(--font-body);
-    line-height: 1.3;
+  background: none; border: none;
+  color: var(--text2); font-size: 21px;
+  cursor: pointer; padding: 8px 24px;
+  border-radius: var(--radius-sm); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font); line-height: 1.3;
+  position: relative;
 }
-.nav-but small { font-size: 10px; font-weight: 600; display: block; letter-spacing: 0.3px; }
-.nav-but.active { color: var(--accent); }
-.nav-but:hover { background: var(--surface2); }
+.nav-but small { font-size: 9px; font-weight: 700; display: block; letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
+.nav-but.active { color: var(--accent); background: rgba(255, 255, 255, 0.15); }
+.nav-but.active small { color: var(--accent); }
+.nav-but:hover { background: var(--glass-hover); }
 
-/* ─── RESPONSIVE ─────────────────────────────────────────────── */
-@media (max-width: 500px) {
-    .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .shop-header { flex-direction: column; align-items: flex-start; }
-    .search-box { width: 100%; }
-    .modal-content { border-radius: 20px 20px 0 0; padding: 24px 18px 28px; }
-    .hero h1 { font-size: 3rem; }
+.nav-but.active::after {
+  content: '';
+  position: absolute; bottom: 4px; left: 50%;
+  transform: translateX(-50%);
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
 }
 
-/* ─── PAYMENT ALERT (RFID) ───────────────────────────────────── */
+/* RFID განგაშის პანელი */
 #payment-alert {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent);
-    color: white;
-    padding: 20px 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    z-index: 9999;
-    text-align: center;
-    font-family: var(--font-body);
-    font-size: 16px;
-    border: 2px solid white;
-    backdrop-filter: blur(5px);
-    animation: slideDown 0.5s ease-out;
+  display: none; position: fixed;
+  top: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--glass-strong);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1.5px solid rgba(52, 199, 89, 0.3);
+  color: var(--text);
+  padding: 20px 34px; border-radius: var(--radius);
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(52, 199, 89, 0.1);
+  z-index: 9999; text-align: center;
+  font-family: var(--font); font-size: 14px;
+  animation: slideDown 0.5s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+body.dark #payment-alert {
+  background: rgba(15, 10, 35, 0.9);
+  box-shadow: 0 12px 44px rgba(0,0,0,0.55), 0 0 0 1px rgba(52, 199, 89, 0.2);
+}
+@keyframes slideDown {
+  from { transform: translateX(-50%) translateY(-80px); opacity:0; }
+  to   { transform: translateX(-50%) translateY(0);     opacity:1; }
 }
 
-@keyframes slideDown {
-    from { top: -100px; opacity: 0; }
-    to { top: 20px; opacity: 1; }
+/* ══════════════════════════════════════
+   ადაპტირება (RESPONSIVE)
+══════════════════════════════════════ */
+@media (max-width: 500px) {
+  .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .shop-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .search-box { width: 100%; }
+  .modal-content { border-radius: 26px 26px 0 0; padding: 24px 18px 32px; }
+  .hero-stats { gap: 0; padding: 18px; justify-content: center; }
+  .hero-stat { padding: 0 14px; }
+}
+
+/* ===== ULTRA GLASS INTRO OVERRIDE ===== */
+#home.active{
+  background:
+  radial-gradient(circle at 50% 20%, rgba(0,122,255,.12), transparent 40%),
+  #fff !important;
+}
+
+.knife-wrap,.tomato-whole,.half-l,.half-r,.splash,.pt{
+  display:none !important;
+}
+
+#home::before{
+  content:'';
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(255,255,255,.25));
+  backdrop-filter:blur(40px);
+  -webkit-backdrop-filter:blur(40px);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:inset 0 2px 2px rgba(255,255,255,.9),0 40px 100px rgba(0,0,0,.08);
+  animation:orbIntro 1.6s ease forwards,orbFloat 6s ease-in-out infinite;
+}
+
+#home::after{
+  content:'';
+  position:absolute;
+  width:120px;
+  height:320px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);
+  transform:rotate(25deg);
+  animation:shineMove 3s ease-in-out infinite;
+}
+
+.hero-content{
+  opacity:0;
+  transform:translateY(40px);
+  animation:heroReveal .9s ease 1s forwards !important;
+}
+
+@keyframes orbIntro{
+  from{opacity:0;transform:scale(.2) rotate(-25deg);filter:blur(20px);}
+  to{opacity:1;transform:scale(1) rotate(0);filter:blur(0);}
+}
+
+@keyframes orbFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-18px);}
+}
+
+@keyframes shineMove{
+  from{left:-20%;top:15%;}
+  to{left:70%;top:15%;}
+}
+
+@keyframes heroReveal{
+  to{opacity:1;transform:translateY(0);}
 }
