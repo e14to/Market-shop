@@ -229,6 +229,7 @@ document.getElementById('cardCvv').addEventListener('input', function () {
     this.value = this.value.replace(/\D/g, '').substring(0, 3);
 });
 
+// ─── ბექენდზე შეკვეთის გაგზავნა (განახლებული) ───────────────────
 function processPayment() {
     const number = document.getElementById('cardNumber').value.replace(/\s/g, '');
     const name = document.getElementById('cardName').value.trim();
@@ -247,17 +248,32 @@ function processPayment() {
 
     if (!valid) return;
 
-    const order = {
-        id: '#' + Math.random().toString(36).substring(2, 7).toUpperCase(),
-        date: new Date().toLocaleDateString(),
+    const orderData = {
         items: [...basket],
         total: basket.reduce((s, i) => s + i.price * i.qty, 0).toFixed(2)
     };
-    orderHistory.unshift(order);
-    saveOrders();
 
-    document.getElementById('paymentForm').classList.add('hidden');
-    document.getElementById('paymentSuccess').classList.remove('hidden');
+    fetch('/api/order.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === 'success') {
+            document.getElementById('paymentForm').classList.add('hidden');
+            document.getElementById('paymentSuccess').classList.remove('hidden');
+            loadOrdersFromServer();
+        } else {
+            showToast('Error processing order: ' + data.message);
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        showToast('სერვერთან კავშირი ვერ დამყარდა');
+    });
 }
 
 function afterPayment() {
@@ -266,42 +282,44 @@ function afterPayment() {
     updateWidget();
     paymentModal.style.display = 'none';
     navigateTo('shop');
-    renderOrders();
+    loadOrdersFromServer();
 }
 
-// ─── Order History ────────────────────────────────────────────
-let orderHistory = JSON.parse(localStorage.getItem('orderHistory') || '[]');
-
-function saveOrders() {
-    localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
-    renderOrders();
-}
-
-function renderOrders() {
+// ─── შეკვეთების წამოღება ბექენდიდან (განახლებული) ───────────────
+function loadOrdersFromServer() {
     const list = document.getElementById('orderList');
     const empty = document.getElementById('emptyOrders');
 
-    if (orderHistory.length === 0) {
-        list.innerHTML = '';
-        empty.style.display = 'block';
-        return;
-    }
+    if (!list) return; // უსაფრთხოებისთვის
 
-    empty.style.display = 'none';
-    list.innerHTML = orderHistory.map(order => `
-        <div class="order-card">
-            <div class="order-header">
-                <strong>${order.id}</strong>
-                <span>${order.date}</span>
+    fetch('/api/order')
+    .then(res => res.json())
+    .then(orders => {
+        if (!orders || orders.length === 0) {
+            list.innerHTML = '';
+            empty.style.display = 'block';
+            return;
+        }
+
+        empty.style.display = 'none';
+        list.innerHTML = orders.map(order => `
+            <div class="order-card">
+                <div class="order-header">
+                    <strong>${order.id}</strong>
+                    <span>${order.date}</span>
+                </div>
+                <div class="order-items">
+                    ${order.items.map(i => `<span>${i.name} × ${i.qty}</span>`).join('')}
+                </div>
+                <div class="order-total">Total: <strong>₾${order.total}</strong></div>
             </div>
-            <div class="order-items">
-                ${order.items.map(i => `<span>${i.name} × ${i.qty}</span>`).join('')}
-            </div>
-            <div class="order-total">Total: <strong>₾${order.total}</strong></div>
-        </div>
-    `).join('');
+        `).join('');
+    })
+    .catch(err => {
+        console.error("შეკვეთების ჩატვირთვა ჩავარდა:", err);
+    });
 }
 
 // ─── Init ─────────────────────────────────────────────────────
-renderOrders();
+loadOrdersFromServer();
 updateWidget();
